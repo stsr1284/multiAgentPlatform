@@ -6838,3 +6838,912 @@ RuntimeError: Attempted to exit cancel scope in a different task than it was ent
 2025-04-22 02:56:49,154 - httpcore.http11 - DEBUG - response_closed.complete
 2025-04-22 02:56:49,155 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
 2025-04-22 02:56:49,167 - shared.loggin_config - INFO - orchestration plan_and_execute result: 안녕하세요! 저는 AI 언어 모델인 ChatGPT입니다. 다양한 주제에 대해 대화하고 정보를 제공할 수 있도록 설계되었습니다. 질문이 있거나 도움이 필요하시면 언제든지 말씀해 주세요!
+2025-04-27 21:25:58,093 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': '\n    call my \n', 'role': 'system'}, {'content': 'Create a LangGraph application that is a prompt chain: it takes a topic from a user, generates a joke, and checks if the joke has a punchline.', 'role': 'user'}], 'model': 'gpt-4o', 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'search_urls', 'description': 'A simple search tool that takes a list of URLs and returns a list of search results.', 'parameters': {'properties': {'urls': {'items': {'type': 'string'}, 'type': 'array'}, 'urllens': {'type': 'integer'}}, 'required': ['urls', 'urllens'], 'type': 'object'}}}, {'type': 'function', 'function': {'name': 'transfer_to_researcher_agent', 'description': "Transfer the user to the researcher_agent to perform research and implement the solution to the user's request.", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-27 21:25:58,098 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-27 21:25:58,288 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x108cbed90>
+2025-04-27 21:25:58,289 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1083f2180> server_hostname='api.openai.com' timeout=None
+2025-04-27 21:25:58,313 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x108c7d810>
+2025-04-27 21:25:58,314 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-27 21:25:58,315 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-27 21:25:58,315 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-27 21:25:58,315 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-27 21:25:58,315 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-27 21:25:59,768 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sun, 27 Apr 2025 12:25:59 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'510'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'500'), (b'x-ratelimit-limit-tokens', b'30000'), (b'x-ratelimit-remaining-requests', b'499'), (b'x-ratelimit-remaining-tokens', b'29958'), (b'x-ratelimit-reset-requests', b'120ms'), (b'x-ratelimit-reset-tokens', b'84ms'), (b'x-request-id', b'req_107f6f13765fb6aac16fc0d5b6c7ad0e'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=MA24mIC2s0A0TigA8P3XiztZaOUxS8KOgxQDB81Nq1E-1745756759-1.0.1.1-_Cno_NWaelNEm8u7gA2fJmL0oQtLZKmIpi7L9S41zb2Hbymd6ryYjNwH9MPrXvrZolelD4Szpsv8LMMCOoPAIV5Pbzzt1uxHwKeWlqVUDXw; path=/; expires=Sun, 27-Apr-25 12:55:59 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=ENQwuGtrzCzGHkf8k8sVEpqeSStd_Q0p5HjXCKDsZJo-1745756759464-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'936e4e3b88daea0b-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-27 21:25:59,771 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-27 21:25:59,772 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-27 21:25:59,772 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-27 21:25:59,773 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-27 21:25:59,773 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-27 21:25:59,773 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-27 21:25:59,793 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': 'go to the planner_agent and call the research_tool', 'role': 'system'}, {'content': 'Create a LangGraph application that is a prompt chain: it takes a topic from a user, generates a joke, and checks if the joke has a punchline.', 'role': 'user'}, {'content': None, 'name': 'planner_agent', 'role': 'assistant', 'tool_calls': [{'type': 'function', 'id': 'call_MoCCPiew9lIfQmAdcAuvH4qM', 'function': {'name': 'transfer_to_researcher_agent', 'arguments': '{}'}}]}, {'content': 'Successfully transferred to researcher_agent', 'role': 'tool', 'tool_call_id': 'call_MoCCPiew9lIfQmAdcAuvH4qM'}], 'model': 'gpt-4o', 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'research_tool', 'description': 'A simple research tool that takes a topic and returns a research statement.', 'parameters': {'properties': {'topic': {'type': 'string'}}, 'required': ['topic'], 'type': 'object'}}}, {'type': 'function', 'function': {'name': 'transfer_to_planner_agent', 'description': 'go to the researcher_agent and call the search_urls', 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-27 21:25:59,797 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-27 21:25:59,797 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-27 21:25:59,797 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-27 21:25:59,797 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-27 21:25:59,797 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-27 21:26:06,553 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sun, 27 Apr 2025 12:26:06 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'6280'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'500'), (b'x-ratelimit-limit-tokens', b'30000'), (b'x-ratelimit-remaining-requests', b'499'), (b'x-ratelimit-remaining-tokens', b'29936'), (b'x-ratelimit-reset-requests', b'120ms'), (b'x-ratelimit-reset-tokens', b'128ms'), (b'x-request-id', b'req_5102758e7a51def8406adda7b97c3f13'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'936e4e44c981ea0b-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-27 21:26:06,556 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-27 21:26:06,556 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-27 21:26:06,557 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-27 21:26:06,557 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-27 21:26:06,557 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-27 21:26:06,557 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-27 21:35:04,893 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': '\n    call my \n', 'role': 'system'}, {'content': 'researcher_agent는 어떤 일을 하는지 설명해줘, planner_agent는 어떤 일을 하는지 설명해줘', 'role': 'user'}], 'model': 'gpt-4o-mini', 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'search_urls', 'description': 'A simple search tool that takes a list of URLs and returns a list of search results.', 'parameters': {'properties': {'urls': {'items': {'type': 'string'}, 'type': 'array'}, 'urllens': {'type': 'integer'}}, 'required': ['urls', 'urllens'], 'type': 'object'}}}, {'type': 'function', 'function': {'name': 'transfer_to_researcher_agent', 'description': "Transfer the user to the researcher_agent to perform research and implement the solution to the user's request.", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-27 21:35:04,898 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-27 21:35:05,054 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x11a01ac50>
+2025-04-27 21:35:05,055 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x118b5e060> server_hostname='api.openai.com' timeout=None
+2025-04-27 21:35:05,080 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x119664350>
+2025-04-27 21:35:05,080 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-27 21:35:05,080 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-27 21:35:05,080 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-27 21:35:05,081 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-27 21:35:05,081 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-27 21:35:12,940 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sun, 27 Apr 2025 12:35:12 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'7393'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199965'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'10ms'), (b'x-request-id', b'req_8293b23880acedcb0b4daecf76b17bb4'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=E8vjsFTkznYjbVGm0GGid8.7QY6QPxMh4JG9rfGjlOU-1745757312-1.0.1.1-nFeV7WI4Gezu8F29AgZPTcW6X3zVCoo_tmqUOGStj0IIoqAHLqEaa0JWkY9_PRSTTMKJa0tsAO.ARLruZDxFGtnqC3M3NKNFUOJnTS963fc; path=/; expires=Sun, 27-Apr-25 13:05:12 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=Uw1gr_EkvlE5UAI9FWEMdg7Eri2RnjCQC6If0MorDmY-1745757312838-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'936e5b94d87caa50-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-27 21:35:12,943 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-27 21:35:12,944 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-27 21:35:12,945 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-27 21:35:12,945 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-27 21:35:12,945 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-27 21:35:12,946 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-27 22:00:40,146 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': '\n    call my \n', 'role': 'system'}, {'content': 'researcher_agent는 어떤 일을 하는지 설명해줘, planner_agent는 어떤 일을 하는지 설명해줘', 'role': 'user'}], 'model': 'gpt-4o-mini', 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'search_urls', 'description': 'A simple search tool that takes a list of URLs and returns a list of search results.', 'parameters': {'properties': {'urls': {'items': {'type': 'string'}, 'type': 'array'}, 'urllens': {'type': 'integer'}}, 'required': ['urls', 'urllens'], 'type': 'object'}}}, {'type': 'function', 'function': {'name': 'transfer_to_researcher_agent', 'description': "Transfer the user to the researcher_agent to perform research and implement the solution to the user's request.", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-27 22:00:40,151 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-27 22:00:40,175 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10982fc90>
+2025-04-27 22:00:40,175 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x10526a330> server_hostname='api.openai.com' timeout=None
+2025-04-27 22:00:40,187 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10539a290>
+2025-04-27 22:00:40,187 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-27 22:00:40,187 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-27 22:00:40,187 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-27 22:00:40,187 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-27 22:00:40,187 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-27 22:00:46,222 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sun, 27 Apr 2025 13:00:46 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'5001'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199965'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'10ms'), (b'x-request-id', b'req_a21f7c5e231f5989211075a4919acdbc'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=XEk2sLq616KTJxpzXbLsSwD9w29e6j.DLPQgPQA_Uqg-1745758846-1.0.1.1-omcKr0_cOUoV.PJgbTNHChEX5jSbzfmdE6eckIzNO9HvB28LJhi5lXhnSBQaKdpx7W8npZeeWzzDVCvckwwBfMaHkIvRa.VJSehDV9VaigM; path=/; expires=Sun, 27-Apr-25 13:30:46 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=pcBw_vGpx6m1ooGv86HqfI2gXdwOEe3s.vZcOLiop9Q-1745758846206-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'936e810f4de1ea2b-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-27 22:00:46,225 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-27 22:00:46,225 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-27 22:00:46,226 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-27 22:00:46,226 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-27 22:00:46,226 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-27 22:00:46,226 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-28 17:13:08,622 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:13:08,622 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:13:08,624 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:13:08,624 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:13:08,624 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:13:08,625 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:13:08,625 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:14:52,307 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:14:52,307 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:14:52,309 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:14:52,309 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:14:52,309 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:14:52,309 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:14:52,309 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:15:14,749 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:15:14,749 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:15:14,751 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:15:14,751 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:15:14,751 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:15:14,751 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:15:14,751 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:17:53,686 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:17:53,686 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:17:53,688 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:17:53,688 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:17:53,688 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:17:53,688 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:17:53,688 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:21:51,538 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:21:51,538 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:21:51,541 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:21:51,541 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:21:51,541 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:21:51,541 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:21:51,541 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:26:30,279 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:26:30,279 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:26:30,281 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:26:30,282 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:26:30,282 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:26:30,282 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:26:30,282 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:30:09,331 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:30:09,331 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:30:09,334 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:30:09,334 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:30:09,334 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:30:09,334 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:30:51,683 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:30:51,684 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:30:51,686 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:30:51,686 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:30:51,686 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:30:51,686 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:30:51,686 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:31:22,222 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:31:22,222 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:31:22,224 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:31:22,224 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:31:22,224 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:31:22,224 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:31:22,224 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:33:50,839 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:33:50,840 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:33:50,842 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:33:50,842 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:33:50,842 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:33:50,842 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:33:50,842 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:35:59,978 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:35:59,978 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:35:59,980 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:35:59,980 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:35:59,980 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:35:59,980 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:35:59,980 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:37:16,150 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:37:16,150 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:37:16,152 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:37:16,152 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:37:16,152 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:37:16,152 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:37:16,152 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:43:08,986 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:43:08,986 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:43:08,989 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:43:08,989 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:43:08,989 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:43:08,989 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:43:08,989 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:44:32,155 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:44:32,156 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:44:32,158 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:44:32,158 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:45:01,504 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:45:01,504 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:45:01,506 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:45:01,506 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:45:01,506 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:45:01,506 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:45:01,506 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:45:54,577 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:45:54,578 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:45:54,580 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:45:54,580 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:45:54,580 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:45:54,580 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:45:54,580 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:46:30,043 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:46:30,043 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:46:30,046 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:46:30,046 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:46:30,046 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:46:30,046 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:46:30,046 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:47:03,749 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:47:03,749 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:47:03,751 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:47:03,752 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:47:03,752 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:47:03,752 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:47:03,752 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:47:54,569 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:47:54,569 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:47:54,571 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:47:54,571 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:47:54,571 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:47:54,571 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:47:54,571 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:49:10,843 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:49:10,843 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:49:10,845 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:49:10,845 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:49:10,845 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:49:10,845 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:49:10,846 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:50:11,630 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:50:11,630 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:50:11,632 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:50:11,633 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:50:11,633 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:50:11,633 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:50:11,633 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:50:30,481 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:50:30,481 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:50:30,483 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:50:30,483 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:50:30,483 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:50:30,483 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:50:30,483 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:51:24,526 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:51:24,526 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 17:51:24,528 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:51:24,528 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 17:51:24,528 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:51:24,528 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 17:51:24,529 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 17:51:29,087 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': 'researcher_agent는 어떤 일을 하는지 설명해줘, planner_agent는 어떤 일을 하는지 설명해줘', 'role': 'user'}], 'model': 'gpt-4o-mini', 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'research_tool', 'description': 'A simple research tool that takes a topic and returns a research statement.', 'parameters': {'properties': {'topic': {'type': 'string'}}, 'required': ['topic'], 'type': 'object'}}}, {'type': 'function', 'function': {'name': 'search_urls', 'description': 'A simple search tool that takes a list of URLs and returns a list of search results.', 'parameters': {'properties': {'urls': {'items': {'type': 'string'}, 'type': 'array'}, 'urllens': {'type': 'integer'}}, 'required': ['urls', 'urllens'], 'type': 'object'}}}]}}
+2025-04-28 17:51:29,106 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-04-28 17:51:29,106 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-28 17:51:29,145 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x10abf93d0>
+2025-04-28 17:51:29,145 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x10b04e2a0> server_hostname='api.openai.com' timeout=None
+2025-04-28 17:51:29,163 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x10b44f590>
+2025-04-28 17:51:29,163 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 17:51:29,163 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 17:51:29,164 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 17:51:29,164 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 17:51:29,164 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 17:51:34,833 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 28 Apr 2025 08:51:34 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'4710'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199970'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'9ms'), (b'x-request-id', b'req_ab86495ff57932d861abfb2d9862f835'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=GYJtJobZKkVCsPYIui4yzoStIU8UvvQ5a0SL.pkVilE-1745830294-1.0.1.1-bdgmftCayV9hH5meOzAdc0CjS7itGSA39S8uOxdOziS0sXRqHDBftz6XvUX3JYJeYaZGlvlYMhd85vCll4k7E4ObVqBN7MDC5UOhIG22EaM; path=/; expires=Mon, 28-Apr-25 09:21:34 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=txnyM9gX4oeWPc1z1FvCP8wnUYjLkuQupHKuvwogBMg-1745830294814-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9375516b8809ea11-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 17:51:34,836 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-28 17:51:34,836 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 17:51:34,837 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 17:51:34,837 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 17:51:34,837 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 17:51:34,837 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Mon, 28 Apr 2025 08:51:34 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-mrjq8yd66gxpp15hvgk3haao'), ('openai-processing-ms', '4710'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '199970'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '9ms'), ('x-request-id', 'req_ab86495ff57932d861abfb2d9862f835'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=GYJtJobZKkVCsPYIui4yzoStIU8UvvQ5a0SL.pkVilE-1745830294-1.0.1.1-bdgmftCayV9hH5meOzAdc0CjS7itGSA39S8uOxdOziS0sXRqHDBftz6XvUX3JYJeYaZGlvlYMhd85vCll4k7E4ObVqBN7MDC5UOhIG22EaM; path=/; expires=Mon, 28-Apr-25 09:21:34 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=txnyM9gX4oeWPc1z1FvCP8wnUYjLkuQupHKuvwogBMg-1745830294814-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '9375516b8809ea11-ICN'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-04-28 17:51:34,837 - openai._base_client - DEBUG - request_id: req_ab86495ff57932d861abfb2d9862f835
+2025-04-28 17:52:02,268 - httpcore.connection - DEBUG - close.started
+2025-04-28 17:52:02,269 - httpcore.connection - DEBUG - close.complete
+2025-04-28 18:01:15,421 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:01:15,422 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:01:15,424 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:01:15,424 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:01:15,424 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:01:15,424 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:03:12,685 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:03:12,685 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:03:12,688 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:03:12,688 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:03:12,688 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:03:12,688 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:03:12,688 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:04:04,320 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:04:04,320 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:04:04,323 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:04:04,323 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:04:04,323 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:04:04,323 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:04:04,323 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:04:04,323 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:05:06,766 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:05:06,767 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:05:06,769 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:05:06,769 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:05:06,769 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:05:06,769 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:05:06,769 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:05:06,769 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:05:09,786 - orchestration_app.shared.loggin_config - ERROR - error: names가 필요합니다
+2025-04-28 18:05:48,925 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:05:48,925 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:05:48,927 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:05:48,927 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:05:48,927 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:05:48,927 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:05:48,928 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:05:48,928 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:06:04,906 - orchestration_app.shared.loggin_config - ERROR - error: 'ReactAgentBuilder' object is not iterable
+2025-04-28 18:07:33,394 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:07:33,395 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:07:33,397 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:07:33,397 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:07:33,397 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:07:33,397 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:07:33,397 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:07:33,397 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:07:34,613 - orchestration_app.shared.loggin_config - ERROR - error: 'coroutine' object has no attribute 'name'
+2025-04-28 18:08:14,163 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:08:14,163 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:08:14,166 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:08:14,166 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:08:14,166 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:08:14,166 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:08:14,166 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:08:14,166 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:08:16,210 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'coroutine' object has no attribute 'name'
+2025-04-28 18:08:49,027 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:08:49,027 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:08:49,029 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:08:49,029 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:08:49,029 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:08:49,029 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:08:49,029 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:08:49,029 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:08:50,004 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'coroutine' object has no attribute 'name'
+2025-04-28 18:09:21,330 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:09:21,330 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:09:21,332 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:09:21,333 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:09:21,333 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:09:21,333 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:09:21,333 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:09:21,333 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:09:22,872 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'coroutine' object has no attribute 'name'
+2025-04-28 18:09:53,289 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:09:53,289 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:09:53,291 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:09:53,291 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:09:53,291 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:09:53,291 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:09:53,291 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:09:53,291 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:09:54,686 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'coroutine' object has no attribute 'name'
+2025-04-28 18:11:44,473 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:11:44,473 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:11:44,475 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:11:44,475 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:11:44,476 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:11:44,476 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:11:44,476 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:11:44,476 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:11:45,922 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'coroutine' object has no attribute 'name'
+2025-04-28 18:12:56,643 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:12:56,643 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:12:56,645 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:12:56,645 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:12:56,645 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:12:56,645 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:12:56,645 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:12:56,645 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:12:58,316 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'coroutine' object has no attribute 'name'
+2025-04-28 18:15:12,396 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:15:12,396 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:15:12,398 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:15:12,398 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:15:12,398 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:15:12,398 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:15:12,398 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:15:12,398 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:16:13,245 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:16:13,245 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:16:13,247 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:16:13,247 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:16:13,247 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:16:13,247 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:16:13,247 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:16:13,247 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:16:14,316 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'NoneType' object has no attribute 'bind_tools'
+2025-04-28 18:19:32,648 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:19:32,648 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:19:32,650 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:19:32,650 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:19:32,650 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:19:32,650 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:19:32,651 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:19:32,651 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:19:34,234 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'NoneType' object has no attribute 'bind_tools'
+2025-04-28 18:21:07,626 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:21:07,626 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:21:07,628 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:21:07,628 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:21:07,628 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:21:07,628 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:21:07,628 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:21:07,628 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:21:08,269 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'NoneType' object has no attribute 'bind_tools'
+2025-04-28 18:21:49,532 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:21:49,532 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:21:49,534 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:21:49,534 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:21:49,534 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:21:49,534 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:21:49,534 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:21:49,534 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:21:51,959 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'NoneType' object has no attribute 'bind_tools'
+2025-04-28 18:21:59,187 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:21:59,187 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:21:59,190 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:21:59,190 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:21:59,190 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:21:59,190 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:21:59,190 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:21:59,190 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:21:59,786 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'NoneType' object has no attribute 'bind_tools'
+2025-04-28 18:23:33,537 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:23:33,538 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:23:33,540 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:23:33,540 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:23:33,540 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:23:33,540 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:23:33,540 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:23:33,540 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:23:34,577 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'NoneType' object has no attribute 'bind_tools'
+2025-04-28 18:23:34,654 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'NoneType' object has no attribute 'bind_tools'
+2025-04-28 18:24:01,758 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:24:01,758 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:24:01,760 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:24:01,760 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:24:01,760 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:24:01,760 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:24:01,761 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:24:01,761 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:24:03,678 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'NoneType' object has no attribute 'bind_tools'
+2025-04-28 18:25:14,375 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:25:14,376 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:25:14,378 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:25:14,378 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:25:14,378 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:25:14,378 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:25:14,378 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:25:14,378 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:25:16,617 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'NoneType' object has no attribute 'bind_tools'
+2025-04-28 18:35:27,769 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:35:27,769 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:35:27,771 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:35:27,771 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:35:27,771 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:35:27,771 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:35:27,771 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:35:27,771 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:35:29,515 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'NoneType' object has no attribute 'bind_tools'
+2025-04-28 18:35:44,541 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:35:44,541 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:35:44,543 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:35:44,543 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:35:44,543 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:35:44,543 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:35:44,543 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:35:44,544 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:35:45,793 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': 'researcher_agent는 어떤 일을 하는지 설명해줘, planner_agent는 어떤 일을 하는지 설명해줘', 'role': 'user'}], 'model': 'gpt-4o-mini', 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'research_tool', 'description': 'A simple research tool that takes a topic and returns a research statement.', 'parameters': {'properties': {'topic': {'type': 'string'}}, 'required': ['topic'], 'type': 'object'}}}, {'type': 'function', 'function': {'name': 'search_urls', 'description': 'A simple search tool that takes a list of URLs and returns a list of search results.', 'parameters': {'properties': {'urls': {'items': {'type': 'string'}, 'type': 'array'}, 'urllens': {'type': 'integer'}}, 'required': ['urls', 'urllens'], 'type': 'object'}}}]}}
+2025-04-28 18:35:45,812 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-04-28 18:35:45,812 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-28 18:35:45,832 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1158e7b50>
+2025-04-28 18:35:45,832 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x111146330> server_hostname='api.openai.com' timeout=None
+2025-04-28 18:35:45,840 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x11153e910>
+2025-04-28 18:35:45,840 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 18:35:45,841 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 18:35:45,841 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 18:35:45,841 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 18:35:45,841 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 18:35:51,334 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 28 Apr 2025 09:35:51 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'4787'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199970'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'9ms'), (b'x-request-id', b'req_acb50bc0ba80742d74d658e233256e73'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=Zv.IY9ZzDUWZ9ydzIRelXOeE0rU_oK9WZqS0mYNxmcQ-1745832951-1.0.1.1-tS.I.ldaR6aG9YDQehkp8zLeiGl7dYoYzSfo.2KIVGy6rx71149yJtDdzzcfLTPZBy2AbARA4uuEXe4m01WinsIWSr.3ebA5OX0zYs2aYlg; path=/; expires=Mon, 28-Apr-25 10:05:51 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=8i4oOLYC8V2fieXLKoWHkkmdRymHeLrlHypq6xHCNQQ-1745832951404-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'937592480cf4bcc4-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 18:35:51,337 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-28 18:35:51,337 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 18:35:51,338 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 18:35:51,338 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 18:35:51,338 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 18:35:51,338 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Mon, 28 Apr 2025 09:35:51 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-mrjq8yd66gxpp15hvgk3haao'), ('openai-processing-ms', '4787'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '199970'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '9ms'), ('x-request-id', 'req_acb50bc0ba80742d74d658e233256e73'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=Zv.IY9ZzDUWZ9ydzIRelXOeE0rU_oK9WZqS0mYNxmcQ-1745832951-1.0.1.1-tS.I.ldaR6aG9YDQehkp8zLeiGl7dYoYzSfo.2KIVGy6rx71149yJtDdzzcfLTPZBy2AbARA4uuEXe4m01WinsIWSr.3ebA5OX0zYs2aYlg; path=/; expires=Mon, 28-Apr-25 10:05:51 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=8i4oOLYC8V2fieXLKoWHkkmdRymHeLrlHypq6xHCNQQ-1745832951404-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '937592480cf4bcc4-ICN'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-04-28 18:35:51,339 - openai._base_client - DEBUG - request_id: req_acb50bc0ba80742d74d658e233256e73
+2025-04-28 18:36:07,453 - httpcore.connection - DEBUG - close.started
+2025-04-28 18:36:07,453 - httpcore.connection - DEBUG - close.complete
+2025-04-28 18:36:08,584 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:36:08,584 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:36:08,586 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:36:08,586 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:36:08,586 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:36:08,586 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:36:08,586 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:36:08,586 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:36:11,252 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': 'user your tool', 'role': 'user'}], 'model': 'gpt-4o-mini', 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'research_tool', 'description': 'A simple research tool that takes a topic and returns a research statement.', 'parameters': {'properties': {'topic': {'type': 'string'}}, 'required': ['topic'], 'type': 'object'}}}, {'type': 'function', 'function': {'name': 'search_urls', 'description': 'A simple search tool that takes a list of URLs and returns a list of search results.', 'parameters': {'properties': {'urls': {'items': {'type': 'string'}, 'type': 'array'}, 'urllens': {'type': 'integer'}}, 'required': ['urls', 'urllens'], 'type': 'object'}}}]}}
+2025-04-28 18:36:11,267 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-04-28 18:36:11,267 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-28 18:36:11,279 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1144d1b10>
+2025-04-28 18:36:11,279 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x113746330> server_hostname='api.openai.com' timeout=None
+2025-04-28 18:36:11,293 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x113c3e810>
+2025-04-28 18:36:11,293 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 18:36:11,294 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 18:36:11,294 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 18:36:11,294 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 18:36:11,294 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 18:36:12,269 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 28 Apr 2025 09:36:12 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'609'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199993'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'1ms'), (b'x-request-id', b'req_0013a0cebce60ba173f7d940540985d4'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=840khJEWNXs59h2xVNOSGNpquBWIOhS8ADyX.eqaMM0-1745832972-1.0.1.1-ww7HE.jiDd1UOnKrYrGsH5_hZDM_XkRZj7DBiPqdBNPwZ_68BySn9mE7BG3QyNRbz.n9qdzWEcIzJLOgj9AvGd1HZN_.F8ZE_Q7rRnuQ3y8; path=/; expires=Mon, 28-Apr-25 10:06:12 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=_LzRzg7rxEkPfRcdenz11EvfASnZ6f4F531X3ZV_UEI-1745832972338-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'937592e71f73ea14-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 18:36:12,272 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-28 18:36:12,273 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 18:36:12,273 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 18:36:12,273 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 18:36:12,273 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 18:36:12,273 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Mon, 28 Apr 2025 09:36:12 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-mrjq8yd66gxpp15hvgk3haao'), ('openai-processing-ms', '609'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '199993'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '1ms'), ('x-request-id', 'req_0013a0cebce60ba173f7d940540985d4'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=840khJEWNXs59h2xVNOSGNpquBWIOhS8ADyX.eqaMM0-1745832972-1.0.1.1-ww7HE.jiDd1UOnKrYrGsH5_hZDM_XkRZj7DBiPqdBNPwZ_68BySn9mE7BG3QyNRbz.n9qdzWEcIzJLOgj9AvGd1HZN_.F8ZE_Q7rRnuQ3y8; path=/; expires=Mon, 28-Apr-25 10:06:12 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=_LzRzg7rxEkPfRcdenz11EvfASnZ6f4F531X3ZV_UEI-1745832972338-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '937592e71f73ea14-ICN'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-04-28 18:36:12,274 - openai._base_client - DEBUG - request_id: req_0013a0cebce60ba173f7d940540985d4
+2025-04-28 18:37:20,056 - httpcore.connection - DEBUG - close.started
+2025-04-28 18:37:20,056 - httpcore.connection - DEBUG - close.complete
+2025-04-28 18:37:21,281 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:37:21,281 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:37:21,283 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:37:21,284 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:37:21,284 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:37:21,284 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:37:21,284 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:37:21,284 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:37:45,867 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:37:45,867 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:37:45,869 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:37:45,869 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:37:45,869 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:37:45,869 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:37:45,869 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:37:45,869 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:39:17,128 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:39:17,128 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:39:17,131 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:39:17,131 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:39:17,131 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:39:17,131 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:39:17,131 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:39:17,131 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:39:18,135 - orchestration_app.shared.loggin_config - ERROR - SupervisorAgentBuilder Error: 'NoneType' object has no attribute 'bind_tools'
+2025-04-28 18:40:52,496 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:40:52,497 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:40:52,499 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:40:52,499 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:40:52,499 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:40:52,499 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:40:52,499 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:40:52,499 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:41:15,848 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:41:15,848 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:41:15,850 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:41:15,850 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:41:15,850 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:41:15,850 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:41:15,851 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:41:15,851 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:41:38,992 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:41:38,992 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:41:38,994 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:41:38,994 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:41:38,995 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:41:38,995 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:41:38,995 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:41:38,995 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:42:36,783 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:42:36,784 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:42:36,786 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:42:36,786 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:42:36,786 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:42:36,786 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:42:36,786 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:42:36,786 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:43:05,039 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:43:05,039 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:43:05,041 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:43:05,041 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:43:05,041 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:43:05,042 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:43:05,042 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:43:05,042 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:43:22,128 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:43:22,128 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:43:22,130 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:43:22,131 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:43:22,131 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:43:22,131 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:43:22,131 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:43:22,131 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:43:24,066 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': "You are a supervisor tasked with managing a conversation between the following workers: ['FINISH', 'palnner']. Given the following user request, respond with the worker to act next. Each worker will perform a task and respond with their results and status. When finished,", 'role': 'system'}, {'content': 'user your tool', 'role': 'user'}], 'model': 'gpt-4o-mini', 'parallel_tool_calls': False, 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'transfer_to_palnner', 'description': "Ask agent 'palnner' for help", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-28 18:43:24,072 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-28 18:43:24,091 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10baf8ad0>
+2025-04-28 18:43:24,092 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1075f63c0> server_hostname='api.openai.com' timeout=None
+2025-04-28 18:43:24,102 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1075069d0>
+2025-04-28 18:43:24,103 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 18:43:24,103 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 18:43:24,103 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 18:43:24,103 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 18:43:24,103 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 18:43:25,098 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 28 Apr 2025 09:43:25 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'593'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199925'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'22ms'), (b'x-request-id', b'req_70ea213460e9e13eb784512c27c5f924'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=t4GQ.CdZkJYr6FRbY_7BPLO3ttRYh2ZvFdworbGc_yw-1745833405-1.0.1.1-KNfrOoGLzSg.TacZJxZdmFE2hKXChknnH3htbsKXNAeqdHgRYY9EFb3wxPruToqW4U035OPW64r1a6P8CSoY4LSjc0.LVmQ9fqLHR8olnc8; path=/; expires=Mon, 28-Apr-25 10:13:25 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=e.Bo09bsrUAkgTcegBZgglxXhOrHMeQwyvIRTPkA9jA-1745833405063-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'93759d77cf06eaaf-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 18:43:25,100 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-28 18:43:25,101 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 18:43:25,101 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 18:43:25,102 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 18:43:25,102 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 18:43:25,103 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-28 18:43:25,186 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': 'user your tool', 'role': 'user'}, {'content': None, 'name': 'supervisor', 'role': 'assistant', 'tool_calls': [{'type': 'function', 'id': 'call_s7b6d0rKgMfkbJLErOpade91', 'function': {'name': 'transfer_to_palnner', 'arguments': '{}'}}]}, {'content': 'Successfully transferred to palnner', 'role': 'tool', 'tool_call_id': 'call_s7b6d0rKgMfkbJLErOpade91'}], 'model': 'gpt-4o-mini', 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'research_tool', 'description': 'A simple research tool that takes a topic and returns a research statement.', 'parameters': {'properties': {'topic': {'type': 'string'}}, 'required': ['topic'], 'type': 'object'}}}, {'type': 'function', 'function': {'name': 'search_urls', 'description': 'A simple search tool that takes a list of URLs and returns a list of search results.', 'parameters': {'properties': {'urls': {'items': {'type': 'string'}, 'type': 'array'}, 'urllens': {'type': 'integer'}}, 'required': ['urls', 'urllens'], 'type': 'object'}}}]}}
+2025-04-28 18:43:25,186 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 18:43:25,186 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 18:43:25,186 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 18:43:25,186 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 18:43:25,186 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 18:43:27,135 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 28 Apr 2025 09:43:27 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'1420'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9998'), (b'x-ratelimit-remaining-tokens', b'199982'), (b'x-ratelimit-reset-requests', b'16.169s'), (b'x-ratelimit-reset-tokens', b'5ms'), (b'x-request-id', b'req_68892670088676593b1b79e0fa35457f'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'93759d7e8c10eaaf-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 18:43:27,137 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-28 18:43:27,138 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 18:43:27,139 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 18:43:27,139 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 18:43:27,139 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 18:43:27,140 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-28 18:43:27,149 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': "You are a supervisor tasked with managing a conversation between the following workers: ['FINISH', 'palnner']. Given the following user request, respond with the worker to act next. Each worker will perform a task and respond with their results and status. When finished,", 'role': 'system'}, {'content': 'user your tool', 'role': 'user'}, {'content': None, 'name': 'supervisor', 'role': 'assistant', 'tool_calls': [{'type': 'function', 'id': 'call_s7b6d0rKgMfkbJLErOpade91', 'function': {'name': 'transfer_to_palnner', 'arguments': '{}'}}]}, {'content': 'Successfully transferred to palnner', 'role': 'tool', 'tool_call_id': 'call_s7b6d0rKgMfkbJLErOpade91'}, {'content': 'It seems there was a misunderstanding. How can I assist you today? If you have a specific topic or question in mind, feel free to share!', 'name': 'palnner', 'role': 'assistant'}, {'content': 'Transferring back to supervisor', 'name': 'palnner', 'role': 'assistant', 'tool_calls': [{'type': 'function', 'id': '6ed16b7d-973f-48ca-b15c-caa2039ae95b', 'function': {'name': 'transfer_back_to_supervisor', 'arguments': '{}'}}]}, {'content': 'Successfully transferred back to supervisor', 'role': 'tool', 'tool_call_id': '6ed16b7d-973f-48ca-b15c-caa2039ae95b'}], 'model': 'gpt-4o-mini', 'parallel_tool_calls': False, 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'transfer_to_palnner', 'description': "Ask agent 'palnner' for help", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-28 18:43:27,151 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 18:43:27,151 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 18:43:27,152 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 18:43:27,152 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 18:43:27,152 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 18:43:27,976 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 28 Apr 2025 09:43:27 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'472'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9997'), (b'x-ratelimit-remaining-tokens', b'199858'), (b'x-ratelimit-reset-requests', b'22.839s'), (b'x-ratelimit-reset-tokens', b'42ms'), (b'x-request-id', b'req_3bfef84f5e24809a84c9f99b98e60f6a'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'93759d8ad88deaaf-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 18:43:27,977 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-28 18:43:27,977 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 18:43:27,979 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 18:43:27,980 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 18:43:27,980 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 18:43:27,980 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-28 18:45:15,760 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:45:15,760 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:45:15,762 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:45:15,762 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:45:15,762 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:45:15,762 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:45:15,762 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:45:15,762 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:45:16,728 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': "You are a supervisor tasked with managing a conversation between the following workers: ['FINISH', 'palnner']. Given the following user request, respond with the worker to act next. Each worker will perform a task and respond with their results and status. When finished,", 'role': 'system'}, {'content': 'user your tool', 'role': 'user'}], 'model': 'gpt-4o-mini', 'parallel_tool_calls': False, 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'transfer_to_palnner', 'description': "Ask agent 'palnner' for help", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-28 18:45:16,733 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-28 18:45:16,756 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10cdcd4d0>
+2025-04-28 18:45:16,756 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1086463c0> server_hostname='api.openai.com' timeout=None
+2025-04-28 18:45:16,773 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10d321650>
+2025-04-28 18:45:16,773 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 18:45:16,774 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 18:45:16,774 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 18:45:16,774 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 18:45:16,774 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 18:45:18,532 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 28 Apr 2025 09:45:17 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'793'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199925'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'22ms'), (b'x-request-id', b'req_3a197cd8a89dd93143f8af5cd34b262e'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=AmZPHK8W8kHABlRgJn29BrGt5gHglAvvvAyd3F9jC54-1745833517-1.0.1.1-slXkGD6.dj4_4wqL5b87ub.mhhMI7Diz9MFcKCHS2wNQlb0oX5120hdGCll2g3EUBx9fXB2YeNOhmlXSY9n1h5ivZVC5EUkDEAlvpJ792ks; path=/; expires=Mon, 28-Apr-25 10:15:17 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=Xibo5XNkrbRxla4zsgaluHep5oLk7z0SSsANsq8WaQE-1745833517941-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9375a037e9aec437-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 18:45:18,536 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-28 18:45:18,536 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 18:45:18,537 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 18:45:18,537 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 18:45:18,537 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 18:45:18,538 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-28 18:45:18,617 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': 'user your tool', 'role': 'user'}, {'content': None, 'name': 'supervisor', 'role': 'assistant', 'tool_calls': [{'type': 'function', 'id': 'call_OaZ585h58IYWK0LptwLyKjTd', 'function': {'name': 'transfer_to_palnner', 'arguments': '{}'}}]}, {'content': 'Successfully transferred to palnner', 'role': 'tool', 'tool_call_id': 'call_OaZ585h58IYWK0LptwLyKjTd'}], 'model': 'gpt-4o-mini', 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'research_tool', 'description': 'A simple research tool that takes a topic and returns a research statement.', 'parameters': {'properties': {'topic': {'type': 'string'}}, 'required': ['topic'], 'type': 'object'}}}, {'type': 'function', 'function': {'name': 'search_urls', 'description': 'A simple search tool that takes a list of URLs and returns a list of search results.', 'parameters': {'properties': {'urls': {'items': {'type': 'string'}, 'type': 'array'}, 'urllens': {'type': 'integer'}}, 'required': ['urls', 'urllens'], 'type': 'object'}}}]}}
+2025-04-28 18:45:18,618 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 18:45:18,618 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 18:45:18,618 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 18:45:18,618 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 18:45:18,618 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 18:45:19,673 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 28 Apr 2025 09:45:19 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'648'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9998'), (b'x-ratelimit-remaining-tokens', b'199982'), (b'x-ratelimit-reset-requests', b'15.437s'), (b'x-ratelimit-reset-tokens', b'5ms'), (b'x-request-id', b'req_977f9e8ef7d87f85e650a20535fe4f11'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9375a0437b08c437-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 18:45:19,674 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-28 18:45:19,674 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 18:45:19,675 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 18:45:19,675 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 18:45:19,675 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 18:45:19,675 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-28 18:45:19,683 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': "You are a supervisor tasked with managing a conversation between the following workers: ['FINISH', 'palnner']. Given the following user request, respond with the worker to act next. Each worker will perform a task and respond with their results and status. When finished,", 'role': 'system'}, {'content': 'user your tool', 'role': 'user'}, {'content': None, 'name': 'supervisor', 'role': 'assistant', 'tool_calls': [{'type': 'function', 'id': 'call_OaZ585h58IYWK0LptwLyKjTd', 'function': {'name': 'transfer_to_palnner', 'arguments': '{}'}}]}, {'content': 'Successfully transferred to palnner', 'role': 'tool', 'tool_call_id': 'call_OaZ585h58IYWK0LptwLyKjTd'}, {'content': 'It seems there was a misunderstanding. How can I assist you today? If you have a specific topic or question in mind, feel free to share!', 'name': 'palnner', 'role': 'assistant'}, {'content': 'Transferring back to supervisor', 'name': 'palnner', 'role': 'assistant', 'tool_calls': [{'type': 'function', 'id': '46515ee7-54ca-47a3-b379-8bb9c4fe5ef2', 'function': {'name': 'transfer_back_to_supervisor', 'arguments': '{}'}}]}, {'content': 'Successfully transferred back to supervisor', 'role': 'tool', 'tool_call_id': '46515ee7-54ca-47a3-b379-8bb9c4fe5ef2'}], 'model': 'gpt-4o-mini', 'parallel_tool_calls': False, 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'transfer_to_palnner', 'description': "Ask agent 'palnner' for help", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-28 18:45:19,684 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 18:45:19,685 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 18:45:19,685 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 18:45:19,685 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 18:45:19,685 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 18:45:20,903 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 28 Apr 2025 09:45:20 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'746'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9997'), (b'x-ratelimit-remaining-tokens', b'199858'), (b'x-ratelimit-reset-requests', b'23.006s'), (b'x-ratelimit-reset-tokens', b'42ms'), (b'x-request-id', b'req_1078f59195c7887fbfb0355b9f6b5617'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9375a04a2fd9c437-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 18:45:20,904 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-28 18:45:20,904 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 18:45:20,905 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 18:45:20,905 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 18:45:20,905 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 18:45:20,905 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-28 18:57:59,087 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:57:59,088 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:57:59,090 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:57:59,090 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:57:59,090 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:57:59,090 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:57:59,090 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:57:59,090 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:58:45,669 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:58:45,669 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:58:45,671 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:58:45,671 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:58:45,671 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:58:45,671 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:58:45,671 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:58:45,671 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:59:17,857 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:59:17,857 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:59:17,859 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:59:17,859 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:59:17,859 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:59:17,859 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:59:17,859 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:59:17,859 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 18:59:19,861 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': "You are a supervisor tasked with managing a conversation between the following workers: ['FINISH', 'palnner']. Given the following user request, respond with the worker to act next. Each worker will perform a task and respond with their results and status. When finished,", 'role': 'system'}, {'content': 'user your tool', 'role': 'user'}], 'model': 'gpt-4o-mini', 'parallel_tool_calls': False, 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'transfer_to_palnner', 'description': "Ask agent 'palnner' for help", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-28 18:59:19,904 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-28 18:59:19,942 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1200151d0>
+2025-04-28 18:59:19,942 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x111148440> server_hostname='api.openai.com' timeout=None
+2025-04-28 18:59:19,957 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x111197c10>
+2025-04-28 18:59:19,957 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 18:59:19,958 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 18:59:19,958 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 18:59:19,958 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 18:59:19,958 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 18:59:20,304 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 401, b'Unauthorized', [(b'Date', b'Mon, 28 Apr 2025 09:59:20 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'414'), (b'Connection', b'keep-alive'), (b'vary', b'Origin'), (b'x-request-id', b'req_dbc935671bb0af4f95d6394852f69106'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=hcu7YNJuuWAdPQ0deNbi7kMyxqcuEGr2R.Oveu98eLw-1745834360-1.0.1.1-fDcsMGq5DkeuZ9uB1cjLaAkq78XpASn5hAoZy6vM1_9YSqezXTzKr2fTgKUP.ne53EhU1e7JDWKJYMygPquTdSMVcqZYhyYejwhw6GeT3so; path=/; expires=Mon, 28-Apr-25 10:29:20 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=XYZEnBWiTAoiT3rCDWS6mZ7Ii4ffTdV4TmqM98Yxp4s-1745834360203-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9375b4cdcf923531-ICN'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 18:59:20,308 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-04-28 18:59:20,308 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 18:59:20,309 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 18:59:20,309 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 18:59:20,309 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 18:59:20,309 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "401 Unauthorized"
+2025-04-28 18:59:20,310 - openai._base_client - DEBUG - Encountered httpx.HTTPStatusError
+Traceback (most recent call last):
+  File "/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1550, in _request
+    response.raise_for_status()
+  File "/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/.venv/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2025-04-28 18:59:20,325 - openai._base_client - DEBUG - Not retrying
+2025-04-28 18:59:20,325 - openai._base_client - DEBUG - Re-raising status error
+2025-04-28 18:59:41,367 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:59:41,367 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 18:59:41,369 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:59:41,369 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 18:59:41,370 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:59:41,370 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 18:59:41,370 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 18:59:41,370 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 19:00:21,465 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 19:00:21,465 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 19:00:21,467 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 19:00:21,468 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 19:00:21,468 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 19:00:21,468 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 19:00:21,468 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 19:00:21,468 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 19:00:27,882 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': "You are a supervisor tasked with managing a conversation between the following workers: ['FINISH', 'palnner']. Given the following user request, respond with the worker to act next. Each worker will perform a task and respond with their results and status. When finished,", 'role': 'system'}, {'content': 'user your tool', 'role': 'user'}], 'model': 'gpt-4o-mini', 'parallel_tool_calls': False, 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'transfer_to_palnner', 'description': "Ask agent 'palnner' for help", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-28 19:00:27,924 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-28 19:00:27,935 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10a020710>
+2025-04-28 19:00:27,935 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1058ec440> server_hostname='api.openai.com' timeout=None
+2025-04-28 19:00:27,952 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10a0207d0>
+2025-04-28 19:00:27,953 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 19:00:27,953 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 19:00:27,953 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 19:00:27,953 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 19:00:27,953 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 19:00:29,266 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 28 Apr 2025 10:00:29 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'428'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199925'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'22ms'), (b'x-request-id', b'req_b335f727a3bc684daaacd90c7a217fa0'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=zi03m3kkCq3Kr0_a_K3Y27B7m8P0vF7_PS.UniThj.o-1745834429-1.0.1.1-Dm0ISFRkjc6sA8DqzAzvFZekjCqChmwB3KO_OkVALtxjyeKqA7R_dYxSOL0h.QfVOgoix1ABmliguh7bKJl8ldrDAOxJUwPEE3caN5EFhJQ; path=/; expires=Mon, 28-Apr-25 10:30:29 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=XsHcw20KUvuB4tOcys8CazX0kCcQWwFtbv_6syLnaeQ-1745834429233-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9375b676dff830aa-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 19:00:29,267 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-28 19:00:29,268 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 19:00:29,268 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 19:00:29,268 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 19:00:29,268 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 19:00:29,269 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-28 19:00:29,281 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': 'user your tool', 'role': 'user'}, {'content': None, 'name': 'supervisor', 'role': 'assistant', 'tool_calls': [{'type': 'function', 'id': 'call_pt49mTf3vpbCKMljkLglVdhG', 'function': {'name': 'transfer_to_palnner', 'arguments': '{}'}}]}, {'content': 'Successfully transferred to palnner', 'role': 'tool', 'tool_call_id': 'call_pt49mTf3vpbCKMljkLglVdhG'}], 'model': 'gpt-4o-mini', 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'research_tool', 'description': 'A simple research tool that takes a topic and returns a research statement.', 'parameters': {'properties': {'topic': {'type': 'string'}}, 'required': ['topic'], 'type': 'object'}}}, {'type': 'function', 'function': {'name': 'search_urls', 'description': 'A simple search tool that takes a list of URLs and returns a list of search results.', 'parameters': {'properties': {'urls': {'items': {'type': 'string'}, 'type': 'array'}, 'urllens': {'type': 'integer'}}, 'required': ['urls', 'urllens'], 'type': 'object'}}}]}}
+2025-04-28 19:00:29,282 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 19:00:29,282 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 19:00:29,282 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 19:00:29,283 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 19:00:29,283 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 19:00:30,558 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 28 Apr 2025 10:00:30 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'778'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9998'), (b'x-ratelimit-remaining-tokens', b'199982'), (b'x-ratelimit-reset-requests', b'16.436s'), (b'x-ratelimit-reset-tokens', b'5ms'), (b'x-request-id', b'req_6e384f00bafff4d8ccfc51c51028ec76'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9375b67f2b6830aa-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 19:00:30,559 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-28 19:00:30,560 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 19:00:30,560 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 19:00:30,560 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 19:00:30,561 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 19:00:30,561 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-28 19:00:30,569 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': "You are a supervisor tasked with managing a conversation between the following workers: ['FINISH', 'palnner']. Given the following user request, respond with the worker to act next. Each worker will perform a task and respond with their results and status. When finished,", 'role': 'system'}, {'content': 'user your tool', 'role': 'user'}, {'content': None, 'name': 'supervisor', 'role': 'assistant', 'tool_calls': [{'type': 'function', 'id': 'call_pt49mTf3vpbCKMljkLglVdhG', 'function': {'name': 'transfer_to_palnner', 'arguments': '{}'}}]}, {'content': 'Successfully transferred to palnner', 'role': 'tool', 'tool_call_id': 'call_pt49mTf3vpbCKMljkLglVdhG'}, {'content': 'It seems there was a misunderstanding. How can I assist you today? If you have a specific topic or question in mind, feel free to share!', 'name': 'palnner', 'role': 'assistant'}, {'content': 'Transferring back to supervisor', 'name': 'palnner', 'role': 'assistant', 'tool_calls': [{'type': 'function', 'id': 'dd35f6b7-3944-4b68-a258-d84c86216d91', 'function': {'name': 'transfer_back_to_supervisor', 'arguments': '{}'}}]}, {'content': 'Successfully transferred back to supervisor', 'role': 'tool', 'tool_call_id': 'dd35f6b7-3944-4b68-a258-d84c86216d91'}], 'model': 'gpt-4o-mini', 'parallel_tool_calls': False, 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'transfer_to_palnner', 'description': "Ask agent 'palnner' for help", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-28 19:00:30,571 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 19:00:30,571 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 19:00:30,571 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 19:00:30,572 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 19:00:30,572 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 19:00:31,576 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 28 Apr 2025 10:00:31 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-mrjq8yd66gxpp15hvgk3haao'), (b'openai-processing-ms', b'594'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9997'), (b'x-ratelimit-remaining-tokens', b'199858'), (b'x-ratelimit-reset-requests', b'23.804s'), (b'x-ratelimit-reset-tokens', b'42ms'), (b'x-request-id', b'req_bb5bcd54ddd19d3295260f868e999457'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9375b6871ddd30aa-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 19:00:31,578 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-28 19:00:31,579 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 19:00:31,580 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 19:00:31,580 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 19:00:31,581 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 19:00:31,581 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "200 OK"
+2025-04-28 19:00:40,678 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 19:00:40,678 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 19:00:40,680 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 19:00:40,680 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 19:00:40,680 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 19:00:40,680 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 19:00:40,680 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 19:00:40,680 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 19:00:43,305 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': "You are a supervisor tasked with managing a conversation between the following workers: ['FINISH', 'palnner']. Given the following user request, respond with the worker to act next. Each worker will perform a task and respond with their results and status. When finished,", 'role': 'system'}, {'content': 'user your tool', 'role': 'user'}], 'model': 'gpt-4o-mini', 'parallel_tool_calls': False, 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'transfer_to_palnner', 'description': "Ask agent 'palnner' for help", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-28 19:00:43,348 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-28 19:00:43,392 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10b423250>
+2025-04-28 19:00:43,392 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x10b048440> server_hostname='api.openai.com' timeout=None
+2025-04-28 19:00:43,407 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10b422d90>
+2025-04-28 19:00:43,407 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 19:00:43,407 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 19:00:43,407 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 19:00:43,408 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 19:00:43,408 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 19:00:43,628 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 401, b'Unauthorized', [(b'Date', b'Mon, 28 Apr 2025 10:00:43 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'414'), (b'Connection', b'keep-alive'), (b'vary', b'Origin'), (b'x-request-id', b'req_48853bc4f5fae904007421c821117589'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=d_Zazpo0WPwcuPgFA30HZFkQd18Cn.J1DNPfXpGCgBM-1745834443-1.0.1.1-4k62T5hbjjm2yQbKqkaoplyk6QNrM8r718QLPbkds0gkqwBIpZo5pgX1MmdITeNlm9ZpHORAEuBSg6FvpVauqZXIxsMCIP7sL7reNC2VoOk; path=/; expires=Mon, 28-Apr-25 10:30:43 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=.gnUIdOz05TuTN9.sWJzF8QS7KvKjQS8BBS5n2idGAo-1745834443581-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9375b6d75f26723a-ICN'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 19:00:43,629 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-04-28 19:00:43,629 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 19:00:43,629 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 19:00:43,630 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 19:00:43,630 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 19:00:43,630 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "401 Unauthorized"
+2025-04-28 19:00:43,630 - openai._base_client - DEBUG - Encountered httpx.HTTPStatusError
+Traceback (most recent call last):
+  File "/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1550, in _request
+    response.raise_for_status()
+  File "/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/.venv/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2025-04-28 19:00:43,632 - openai._base_client - DEBUG - Not retrying
+2025-04-28 19:00:43,632 - openai._base_client - DEBUG - Re-raising status error
+2025-04-28 19:00:55,181 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 19:00:55,181 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 19:00:55,183 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 19:00:55,183 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 19:00:55,183 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 19:00:55,183 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 19:00:55,183 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 19:00:55,183 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 19:00:56,529 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': "You are a supervisor tasked with managing a conversation between the following workers: ['FINISH', 'palnner']. Given the following user request, respond with the worker to act next. Each worker will perform a task and respond with their results and status. When finished,", 'role': 'system'}, {'content': 'user your tool', 'role': 'user'}], 'model': 'gpt-4o-mini', 'parallel_tool_calls': False, 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'transfer_to_palnner', 'description': "Ask agent 'palnner' for help", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-28 19:00:56,571 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-28 19:00:56,656 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x109eb3c90>
+2025-04-28 19:00:56,657 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x109784440> server_hostname='api.openai.com' timeout=None
+2025-04-28 19:00:56,676 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x109bd0790>
+2025-04-28 19:00:56,677 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 19:00:56,677 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 19:00:56,677 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 19:00:56,677 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 19:00:56,677 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 19:00:56,854 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 401, b'Unauthorized', [(b'Date', b'Mon, 28 Apr 2025 10:00:56 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'414'), (b'Connection', b'keep-alive'), (b'vary', b'Origin'), (b'x-request-id', b'req_c11e42ee9ec528e9e00000941662c78a'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=6tuVoAuQ29P_gLBXaDHc.mQP4w3h2AEtXJu.AKU1KiQ-1745834456-1.0.1.1-.Q8TxIPwnsjRmP2lzEVvNEeqkhK.BA04FDydoLlskuUTb7NB3YJM.NHNNxBDkd2ZmKbSvkhgxrwiW07R0obUe4GxfkLzVwPdgZ72ycDBRIE; path=/; expires=Mon, 28-Apr-25 10:30:56 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=czqkWwzntwBWA1OmfigH4CZ5jOwRofqjI0kzbIHwD64-1745834456848-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9375b72a4a1c311b-ICN'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 19:00:56,858 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-04-28 19:00:56,858 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 19:00:56,858 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 19:00:56,858 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 19:00:56,859 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 19:00:56,859 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "401 Unauthorized"
+2025-04-28 19:00:56,859 - openai._base_client - DEBUG - Encountered httpx.HTTPStatusError
+Traceback (most recent call last):
+  File "/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1550, in _request
+    response.raise_for_status()
+  File "/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/.venv/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2025-04-28 19:00:56,864 - openai._base_client - DEBUG - Not retrying
+2025-04-28 19:00:56,864 - openai._base_client - DEBUG - Re-raising status error
+2025-04-28 19:01:16,888 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 19:01:16,888 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 19:01:16,890 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 19:01:16,890 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 19:01:16,890 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 19:01:16,890 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 19:01:16,890 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 19:01:16,890 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 19:01:19,109 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': "You are a supervisor tasked with managing a conversation between the following workers: ['FINISH', 'palnner']. Given the following user request, respond with the worker to act next. Each worker will perform a task and respond with their results and status. When finished,", 'role': 'system'}, {'content': 'user your tool', 'role': 'user'}], 'model': 'gpt-4o-mini', 'parallel_tool_calls': False, 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'transfer_to_palnner', 'description': "Ask agent 'palnner' for help", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-28 19:01:19,152 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-28 19:01:19,262 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10da7aa50>
+2025-04-28 19:01:19,262 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x109570440> server_hostname='api.openai.com' timeout=None
+2025-04-28 19:01:19,308 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1088becd0>
+2025-04-28 19:01:19,309 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 19:01:19,309 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 19:01:19,309 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 19:01:19,310 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 19:01:19,310 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 19:01:19,503 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 401, b'Unauthorized', [(b'Date', b'Mon, 28 Apr 2025 10:01:19 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'414'), (b'Connection', b'keep-alive'), (b'vary', b'Origin'), (b'x-request-id', b'req_488600a15d2a69a50fd32c2daa550d19'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=.eNEiEjLkSfGWn_.hTn4BzfqjpBZo4Rq4WVxOCsJTig-1745834479-1.0.1.1-ynvVmFlj8j7oCdToVBIpt7J9u6kLtjRKthiV1T8MQ2W6eWpC_fce3xsFXtUv_tclaqchT1C1gqhgLBDlS5kVZPfInAwF7EoTAk4jNeFfJo8; path=/; expires=Mon, 28-Apr-25 10:31:19 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=jGbG7WVH5.n2tPPpqup86mwq_4.PxJtYE6LjiIKojAU-1745834479498-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9375b7b7e83bd1ee-ICN'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 19:01:19,505 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-04-28 19:01:19,505 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 19:01:19,505 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 19:01:19,506 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 19:01:19,506 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 19:01:19,507 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "401 Unauthorized"
+2025-04-28 19:01:19,507 - openai._base_client - DEBUG - Encountered httpx.HTTPStatusError
+Traceback (most recent call last):
+  File "/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1550, in _request
+    response.raise_for_status()
+  File "/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/.venv/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2025-04-28 19:01:19,512 - openai._base_client - DEBUG - Not retrying
+2025-04-28 19:01:19,512 - openai._base_client - DEBUG - Re-raising status error
+2025-04-28 19:01:30,551 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 19:01:30,551 - orchestration_app.shared.loggin_config - INFO - Item gpt-4o-mini found in LLMRegistry
+2025-04-28 19:01:30,553 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 19:01:30,553 - orchestration_app.shared.loggin_config - INFO - Item research_tool found in ToolRegistry
+2025-04-28 19:01:30,553 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 19:01:30,553 - orchestration_app.shared.loggin_config - INFO - Item search_urls found in ToolRegistry
+2025-04-28 19:01:30,554 - orchestration_app.shared.loggin_config - INFO - Item reactagentbuilder found in AgentBuilderRegistry
+2025-04-28 19:01:30,554 - orchestration_app.shared.loggin_config - INFO - Item supervisoragentbuilder found in AgentBuilderRegistry
+2025-04-28 19:01:31,996 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': "You are a supervisor tasked with managing a conversation between the following workers: ['FINISH', 'palnner']. Given the following user request, respond with the worker to act next. Each worker will perform a task and respond with their results and status. When finished,", 'role': 'system'}, {'content': 'user your tool', 'role': 'user'}], 'model': 'gpt-4o-mini', 'parallel_tool_calls': False, 'stream': False, 'temperature': 0.0, 'tools': [{'type': 'function', 'function': {'name': 'transfer_to_palnner', 'description': "Ask agent 'palnner' for help", 'parameters': {'properties': {}, 'type': 'object'}}}]}}
+2025-04-28 19:01:32,040 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-04-28 19:01:32,053 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x109a00cd0>
+2025-04-28 19:01:32,053 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x10554c440> server_hostname='api.openai.com' timeout=None
+2025-04-28 19:01:32,064 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1099488d0>
+2025-04-28 19:01:32,064 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-28 19:01:32,065 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-28 19:01:32,065 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-28 19:01:32,065 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-28 19:01:32,065 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-28 19:01:32,265 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 401, b'Unauthorized', [(b'Date', b'Mon, 28 Apr 2025 10:01:32 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'414'), (b'Connection', b'keep-alive'), (b'vary', b'Origin'), (b'x-request-id', b'req_245b0701d10deadb4e3a6bf5c334b7ab'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=_c9LUVrrqBzC_ECZxePV2eMXs_yvRE0l0y0wgGwwhaU-1745834492-1.0.1.1-RR6ZSI09SohUPgM9xsIlWQJnPLwu_p6YYKrM94hK4xcZDd1altpMVuiRsq_WpNvnztIPjzMjPkYt55B8NDXC87My4OOvJAFjM3XOW86UwaU; path=/; expires=Mon, 28-Apr-25 10:31:32 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=Tqb1ZJ.axG4dnYAERgTnzpUrGZZzdCiPNhVyH4CFDCw-1745834492252-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9375b80789bfaa83-ICN'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-04-28 19:01:32,268 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-04-28 19:01:32,269 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-28 19:01:32,269 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-28 19:01:32,269 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-28 19:01:32,270 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-28 19:01:32,270 - openai._base_client - DEBUG - HTTP Request: POST https://api.openai.com/v1/chat/completions "401 Unauthorized"
+2025-04-28 19:01:32,270 - openai._base_client - DEBUG - Encountered httpx.HTTPStatusError
+Traceback (most recent call last):
+  File "/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1550, in _request
+    response.raise_for_status()
+  File "/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/.venv/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2025-04-28 19:01:32,275 - openai._base_client - DEBUG - Not retrying
+2025-04-28 19:01:32,275 - openai._base_client - DEBUG - Re-raising status error
