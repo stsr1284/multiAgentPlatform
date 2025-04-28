@@ -26,11 +26,15 @@ class SupervisorAgentBuilder(BaseBuilder):
 
     async def __call__(self, **kwargs):
         try:
-            names = kwargs.get("names")
-            if names is None:
-                raise ValueError("names가 필요합니다")
-            self.name = names[0]
-            llms = kwargs.get("llms")
+            print(
+                "-----------------SupervisorAgentBuilder __call__---------------------"
+            )
+            name = kwargs.get("name")
+            if name is None:
+                raise ValueError("name가 필요합니다")
+            self.name = name
+            print(f"kwargs: {kwargs}")
+            llms = kwargs.get("llm")
             if llms is None:
                 raise ValueError("llms가 필요합니다.")
             self.llm = llms[0]
@@ -39,17 +43,20 @@ class SupervisorAgentBuilder(BaseBuilder):
             if tools:
                 self.tools = tools
 
-            prompts = kwargs.get("prompts")
+            prompts = kwargs.get("prompt")
             if prompts:
-                self.prompt = prompts[0]
+                self.prompt = prompts
 
             agent_builder_list = kwargs.get("agent_builder_list")
             if agent_builder_list is None:
                 raise ValueError("agent_builder_list가 필요합니다.")
             self.agent_builder_list = agent_builder_list
             agent_list = []
+            print("여긴가?")
             for agent in self.agent_builder_list:
+                print(agent.name)
                 agent_list.append(await agent.build())
+            print("여긴가?")
             self.agent_list = agent_list
             members = [agent.name for agent in self.agent_builder_list]
             options = ["FINISH"] + members
@@ -77,7 +84,7 @@ class SupervisorAgentBuilder(BaseBuilder):
                 agents=self.agent_list,
                 tools=self.tools,
             )
-            compiled_graph = self.graph.compile()
+            compiled_graph = self.graph.compile(name=self.name)
         except Exception as e:
             logger.error(f"error: {e}")
             raise

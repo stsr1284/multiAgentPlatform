@@ -2,8 +2,6 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
 
 
-from orchestration_app.domain.entities.AgentDefinition import AgentDefinition
-
 from orchestration_app.domain.orchestrators.ManagementOrchestrator import (
     ManagementOrchestrator,
 )  # test
@@ -25,7 +23,14 @@ from orchestration_app.domain.Builder.ReactAgentBuilder import ReactAgentBuilder
 
 from orchestration_app.utils.config import settings
 
+from orchestration_app.application.AgentFactory import AgentFactory
+
+from orchestration_app.test_json import json_data
+
+from orchestration_app.infrastructure.FileWatcher import FileWatcherService
+
 router = APIRouter()
+
 
 llmRegistry = LLMRegistry(
     ChatOpenAI(
@@ -36,7 +41,6 @@ llmRegistry = LLMRegistry(
     ChatOpenAI(
         model="gpt-4o-mini",
         temperature=0,
-        api_key=settings.OPENAI_API_KEY,
     ),
 )
 
@@ -77,37 +81,11 @@ tools = []
 tools = [
     toolRegistry.get(name) for name in tool_names if toolRegistry.get(name) is not None
 ]
-# tools = [toolRegistry.get("research_tool")]
 
-print("tool Name: ", tools)
+agentBuilderRegistry = AgentBuilderRegistry(ReactAgentBuilder, SupervisorAgentBuilder)
 
-agentBuilderRegistry = AgentBuilderRegistry(
-    ReactAgentBuilder(), SupervisorAgentBuilder()
-)
-
-
-test_agent = agentBuilderRegistry.get("reactagentbuilder")
-print("test_agent:", test_agent.type)
-
-supervisor_agent = agentBuilderRegistry.get("supervisoragentbuilder")
-# agent1 = AgentDefinition(
-#     llm=llmRegistry.get("gpt-4o"),
-#     name="researcher_agent",
-#     tools=[toolRegistry.get("research_tool")],
-#     description="Transfer the user to the researcher_agent to perform research and implement the solution to the user's request.",
-#     prompt="go to the planner_agent and call the research_tool",
-#     config={"recursion_limit": 3},
-# )
-# agent2 = AgentDefinition(
-#     llm=llmRegistry.get("gpt-4o-mini"),
-#     name="planner_agent",
-#     tools=[toolRegistry.get("search_urls")],
-#     description="go to the researcher_agent and call the search_urls",
-#     prompt="""
-#     go to the researcher_agent and call the search_urls tool.
-# """,
-#     config={},
-# )
+agent_factory = AgentFactory(agentBuilderRegistry, llmRegistry, toolRegistry)
+agent_list = []
 
 
 async def stream_async(graph, inputs):
@@ -139,26 +117,11 @@ async def run_orchestration(
             " ",
             orchestrator_type,
         )
-        question = "user your tool"
-        await test_agent(llms=llms, tools=tools, names=["palnner"])
         print("1")
-        print("test_agent name: ", test_agent.name)
-        await supervisor_agent(
-            llms=llms, names=["travelsupervisor"], agent_builder_list=[test_agent]
-        )
-        print("2")
-        graph = await supervisor_agent.build()
-        print("3")
-        # result = graph.invoke(
-        #     {
-        #         "messages": [
-        #             {
-        #                 "role": "user",
-        #                 "content": question,
-        #             }
-        #         ]
-        #     }
-        # )
+        agent_list = await agent_factory.create_agents_from_json(json_data)
+        good_agent_list = [await agent.build() for agent in agent_list]
+        print("test start\n\n")
+        question = "user your tool"
         input = {
             "messages": [
                 {
@@ -167,10 +130,42 @@ async def run_orchestration(
                 }
             ]
         }
-        result = await stream_async(graph, input)
-        print("4")
-        print("run_orchestration result:", result)
-        return {"result": result}
+        results = [agent.invoke(input) for agent in good_agent_list]
+        [print(result["messages"][-1].content, "\n\n") for result in results]
+
+        print("2")
+        # question = "user your tool"
+        # await test_agent(llms=llms, tools=tools, names=["palnner"])
+        # print("1")
+        # print("test_agent name: ", test_agent.name)
+        # await supervisor_agent(
+        #     llms=llms, names=["travelsupervisor"], agent_builder_list=[test_agent]
+        # )
+        # print("2")
+        # graph = await supervisor_agent.build()
+        # print("3")
+        # # result = graph.invoke(
+        # #     {
+        # #         "messages": [
+        # #             {
+        # #                 "role": "user",
+        # #                 "content": question,
+        # #             }
+        # #         ]
+        # #     }
+        # # )
+        # input = {
+        #     "messages": [
+        #         {
+        #             "role": "user",
+        #             "content": question,
+        #         }
+        #     ]
+        # }
+        # result = await stream_async(graph, input)
+        # print("4")
+        # print("run_orchestration result:", result)
+        # return {"result": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -206,6 +201,32 @@ async def stream_orchestration(
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+file_watcher_service: FileWatcherService = None
+
+
+# 업데이트 콜백 함수
+async def update_json_repo(new_json_data):
+    from orchestration_app.test_json import update_json_data  # 임시로 이렇게
+
+    await update_json_data(new_json_data)
+
+
+@app.on_event("startup")
+async def startup_event():
+    global file_watcher_service
+    file_watcher_service = FileWatcherService(
+        filepath="orchestration_app/test_json/example.json",
+        update_callback=update_json_repo,
+    )
+    file_watcher_service.start()
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    if file_watcher_service:
+        file_watcher_service.stop()
 
 
 # @router.post("/register")
