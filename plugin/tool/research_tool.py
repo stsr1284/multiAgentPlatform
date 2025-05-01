@@ -11,5 +11,5 @@ def research_tool(topic: str) -> str:
     return f"Researching the topic: {topic}"
 
 
-async def register_tool(registry):
+async def register(registry):
     await registry.register(research_tool)

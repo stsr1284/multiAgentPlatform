@@ -16888,3 +16888,215 @@ ValueError: gpt-4o-mini not found in ToolRegistry
 2025-05-01 22:37:30,833 - watchfiles.main - DEBUG - rust notify timeout, continuing
 2025-05-01 22:37:35,866 - watchfiles.main - DEBUG - rust notify timeout, continuing
 2025-05-01 22:37:35,995 - shared.loggin_config - INFO - Shutting down...
+2025-05-01 23:04:38,102 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:04:38,675 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o-mini.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:04:38,690 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:04:38,732 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/SupervisorAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:04:38,733 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/ReactAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:04:38,947 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/search_urls.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:04:38,948 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/research_tool.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:04:43,959 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:04:49,009 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:04:54,041 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:04:59,063 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:05:04,110 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:05:09,156 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:05:14,184 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:05:18,612 - shared.loggin_config - INFO - Shutting down...
+2025-05-01 23:05:20,092 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:05:20,623 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o-mini.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:05:20,636 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:05:20,674 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/SupervisorAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:05:20,674 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/ReactAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:05:20,848 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/search_urls.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:05:20,850 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/research_tool.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:05:25,890 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:05:30,926 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:05:35,933 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:05:40,991 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:05:46,009 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:05:51,045 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:05:56,088 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:06:01,102 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:06:06,122 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:06:11,134 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:06:16,175 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:06:21,188 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:06:26,237 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:06:31,257 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:06:36,310 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:06:41,329 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:06:46,374 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:06:51,400 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:06:56,432 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:07:01,443 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:07:06,480 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:07:11,509 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:07:16,566 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:07:21,621 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:07:26,627 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:07:31,681 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:07:36,733 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:07:38,721 - shared.loggin_config - INFO - Shutting down...
+2025-05-01 23:10:42,475 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:10:43,049 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o-mini.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:10:43,062 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:10:43,106 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/SupervisorAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:10:43,107 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/ReactAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:10:43,340 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/search_urls.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:10:43,342 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/research_tool.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:10:48,375 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:10:53,429 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:10:58,449 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:11:03,469 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:11:08,489 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:11:13,522 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:11:18,546 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:11:23,553 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:11:23,595 - shared.loggin_config - INFO - Shutting down...
+2025-05-01 23:11:24,278 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:11:24,785 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o-mini.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:11:24,797 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:11:24,835 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/SupervisorAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:11:24,835 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/ReactAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:11:25,018 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/search_urls.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:11:25,019 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/research_tool.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:11:27,857 - shared.loggin_config - INFO - Shutting down...
+2025-05-01 23:11:28,824 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:11:29,260 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o-mini.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:11:29,272 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:11:29,298 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/SupervisorAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:11:29,298 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/ReactAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:11:29,438 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/search_urls.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:11:29,439 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/research_tool.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:11:30,253 - shared.loggin_config - INFO - Shutting down...
+2025-05-01 23:11:30,888 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:11:31,298 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o-mini.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:11:31,309 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:11:31,340 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/SupervisorAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:11:31,341 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/ReactAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:11:31,493 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/search_urls.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:11:31,494 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/research_tool.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:11:36,549 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:11:41,576 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:11:46,626 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:11:51,654 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:11:56,663 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:12:01,671 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:12:06,700 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:12:11,733 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:12:16,763 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:12:21,800 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:12:26,848 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:12:31,859 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:12:36,913 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:12:41,964 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:12:47,018 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:12:52,034 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:12:57,050 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:13:02,081 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:13:04,639 - shared.loggin_config - INFO - Shutting down...
+2025-05-01 23:13:05,664 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:13:06,213 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o-mini.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:13:06,224 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o.py: 'str' object has no attribute 'model_name'
+2025-05-01 23:13:06,266 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/SupervisorAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:13:06,266 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/ReactAgentBuilder.py: 'str' object is not callable
+2025-05-01 23:13:06,470 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/search_urls.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:13:06,471 - shared.loggin_config - ERROR - [ERROR] Failed to load /Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/research_tool.py: 'str' object has no attribute 'get_name'
+2025-05-01 23:13:11,479 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:13:16,520 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:13:21,547 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:13:26,556 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:13:31,575 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:13:36,606 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:13:41,610 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:13:46,621 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:13:51,631 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:13:56,653 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:14:01,675 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:14:06,681 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:14:11,711 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:14:16,737 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:14:18,484 - shared.loggin_config - INFO - Shutting down...
+2025-05-01 23:14:19,571 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:15:35,623 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:17:55,391 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:19:05,480 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:19:21,418 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:26:29,314 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:30:33,633 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:35:01,877 - shared.loggin_config - INFO - Starting up...
+2025-05-01 23:35:02,482 - shared.loggin_config - INFO - Registering item gpt-4o-mini in LLMRegistry
+2025-05-01 23:35:02,495 - shared.loggin_config - INFO - Registering item gpt-4o in LLMRegistry
+2025-05-01 23:35:02,541 - shared.loggin_config - INFO - Registering item SupervisorAgentBuilder in AgentBuilderRegistry
+2025-05-01 23:35:02,543 - shared.loggin_config - INFO - Registering item ReactAgentBuilder in AgentBuilderRegistry
+2025-05-01 23:35:02,744 - shared.loggin_config - INFO - Registering item search_urls in ToolRegistry
+2025-05-01 23:35:02,746 - shared.loggin_config - INFO - Registering item research_tool in ToolRegistry
+2025-05-01 23:35:02,861 - watchfiles.main - DEBUG - all changes filtered out, raw_changes={(3, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/__pycache__/research_tool.cpython-311.pyc.4456088240'), (1, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/__pycache__/research_tool.cpython-311.pyc.4456088240'), (1, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/__pycache__/research_tool.cpython-311.pyc')}
+2025-05-01 23:35:07,892 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:35:12,944 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:35:17,957 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:35:22,961 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:35:25,374 - watchfiles.main - DEBUG - 2 changes detected: {(<Change.deleted: 3>, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o.py'), (<Change.added: 1>, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/gpt-4o.py')}
+2025-05-01 23:35:25,374 - shared.loggin_config - INFO - Item gpt-4o removed from LLMRegistry
+2025-05-01 23:35:25,430 - shared.loggin_config - ERROR - Failed to load module gpt-4o: BaseChatModel.__call__() missing 1 required positional argument: 'messages'
+2025-05-01 23:35:25,540 - watchfiles.main - DEBUG - all changes filtered out, raw_changes={(1, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/__pycache__/gpt-4o.cpython-311.pyc.4460358640'), (1, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/__pycache__/gpt-4o.cpython-311.pyc'), (3, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/__pycache__/gpt-4o.cpython-311.pyc.4460358640')}
+2025-05-01 23:35:30,581 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:35:35,603 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:35:39,988 - watchfiles.main - DEBUG - 2 changes detected: {(<Change.added: 1>, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o.py'), (<Change.deleted: 3>, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/gpt-4o.py')}
+2025-05-01 23:35:40,004 - shared.loggin_config - INFO - Registering item gpt-4o in LLMRegistry
+2025-05-01 23:35:40,004 - shared.loggin_config - WARNING - Failed to unregister gpt-4o from builder
+2025-05-01 23:35:45,012 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:35:50,066 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:35:53,507 - watchfiles.main - DEBUG - 2 changes detected: {(<Change.deleted: 3>, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/research_tool.py'), (<Change.added: 1>, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/research_tool.py')}
+2025-05-01 23:35:53,507 - shared.loggin_config - INFO - Item research_tool removed from ToolRegistry
+2025-05-01 23:35:53,547 - shared.loggin_config - ERROR - Failed to load module research_tool: 'StructuredTool' object has no attribute 'model_name'
+2025-05-01 23:35:53,657 - watchfiles.main - DEBUG - all changes filtered out, raw_changes={(1, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/__pycache__/research_tool.cpython-311.pyc'), (3, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/__pycache__/research_tool.cpython-311.pyc.4460547568'), (1, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/__pycache__/research_tool.cpython-311.pyc.4460547568')}
+2025-05-01 23:35:58,668 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:36:03,670 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:36:03,831 - watchfiles.main - DEBUG - 2 changes detected: {(<Change.added: 1>, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/tool/research_tool.py'), (<Change.deleted: 3>, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/research_tool.py')}
+2025-05-01 23:36:03,833 - shared.loggin_config - INFO - Registering item research_tool in ToolRegistry
+2025-05-01 23:36:03,833 - shared.loggin_config - WARNING - Failed to unregister research_tool from llm
+2025-05-01 23:36:08,889 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-01 23:36:12,298 - shared.loggin_config - INFO - Shutting down...
+2025-05-02 02:12:20,482 - shared.loggin_config - INFO - Starting up...
+2025-05-02 02:12:21,096 - shared.loggin_config - INFO - Registering item gpt-4o-mini in LLMRegistry
+2025-05-02 02:12:21,113 - shared.loggin_config - INFO - Registering item gpt-4o in LLMRegistry
+2025-05-02 02:12:21,157 - shared.loggin_config - INFO - Registering item SupervisorAgentBuilder in AgentBuilderRegistry
+2025-05-02 02:12:21,157 - shared.loggin_config - INFO - Registering item ReactAgentBuilder in AgentBuilderRegistry
+2025-05-02 02:12:21,355 - shared.loggin_config - INFO - Registering item search_urls in ToolRegistry
+2025-05-02 02:12:21,356 - shared.loggin_config - INFO - Registering item research_tool in ToolRegistry
+2025-05-02 02:12:26,392 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:12:31,402 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:12:36,405 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:12:37,962 - watchfiles.main - DEBUG - 2 changes detected: {(<Change.added: 1>, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/gpt-4o.py'), (<Change.deleted: 3>, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o.py')}
+2025-05-02 02:12:37,977 - shared.loggin_config - ERROR - Failed to load module gpt-4o: BaseChatModel.__call__() missing 1 required positional argument: 'messages'
+2025-05-02 02:12:37,977 - shared.loggin_config - INFO - Item gpt-4o removed from LLMRegistry
+2025-05-02 02:12:43,003 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:12:48,018 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:12:53,056 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:12:58,111 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:13:03,114 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:13:08,123 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:13:13,146 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:13:18,196 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:13:23,212 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:13:28,231 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:13:33,253 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:13:38,266 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:13:43,283 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:13:48,302 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:13:53,313 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:13:58,330 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:14:03,333 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:14:08,345 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:14:13,355 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:14:18,378 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:14:23,393 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:14:28,443 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:14:33,471 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:14:33,739 - watchfiles.main - DEBUG - 2 changes detected: {(<Change.added: 1>, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/llm/gpt-4o.py'), (<Change.deleted: 3>, '/Users/donghak/Documents/DirMultiAgent/multiAgentPlatform/plugin/builder/gpt-4o.py')}
+2025-05-02 02:14:33,757 - shared.loggin_config - INFO - Registering item gpt-4o in LLMRegistry
+2025-05-02 02:14:33,757 - shared.loggin_config - WARNING - Failed to unregister gpt-4o from builder
+2025-05-02 02:14:38,765 - watchfiles.main - DEBUG - rust notify timeout, continuing
+2025-05-02 02:14:43,183 - shared.loggin_config - INFO - Shutting down...

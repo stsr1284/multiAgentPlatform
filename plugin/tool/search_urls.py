@@ -13,7 +13,7 @@ def search_urls(urls: list[str], urllens: int):
     return f"Searching the following URLs: {urls}"
 
 
-async def register_tool(registry):
+async def register(registry):
     await registry.register(search_urls)
 
 

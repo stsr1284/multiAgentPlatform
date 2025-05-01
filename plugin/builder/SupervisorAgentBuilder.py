@@ -91,7 +91,7 @@ class SupervisorAgentBuilder(BaseBuilder):
         return compiled_graph
 
 
-async def register_builder(registry):
+async def register(registry):
     try:
         await registry.register(SupervisorAgentBuilder)
     except Exception as e:

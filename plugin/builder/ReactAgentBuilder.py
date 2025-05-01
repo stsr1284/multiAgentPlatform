@@ -64,7 +64,7 @@ class ReactAgentBuilder(BaseBuilder):
         return graph
 
 
-async def register_builder(registry):
+async def register(registry):
     try:
         await registry.register(ReactAgentBuilder)
     except Exception as e:
