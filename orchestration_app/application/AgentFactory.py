@@ -1,13 +1,14 @@
-from orchestration_app.domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
-from orchestration_app.domain.registry.LLMRegistry import LLMRegistry
-from orchestration_app.domain.registry.ToolRegistry import ToolRegistry
-from orchestration_app.domain.Builder.BaseBuilder import BaseBuilder
-from orchestration_app.shared.loggin_config import logger
+from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
+from domain.registry.LLMRegistry import LLMRegistry
+from domain.registry.ToolRegistry import ToolRegistry
+from domain.Builder.BaseBuilder import BaseBuilder
+from shared.loggin_config import logger
 from typing import List, Dict, Any, Union
 import copy
 import json
 
 
+# factory 패턴이 아니기때문에 디자인패턴에 맞는 명칭을 정하기
 class AgentFactory:
     def __init__(
         self,
@@ -52,15 +53,17 @@ class AgentFactory:
             try:
                 if "agent" in item:
                     agent_data = item["agent"]
+                    logger.debug(f"[{idx}] Start Created agent")
                     agent = await self.build_agent(agent_data)
                     agents.append(agent)
-                    logger.debug(f"[{idx}] Created agent: {agent.name}")
+                    logger.debug(f"[{idx}] Success Created agent: {agent.name}\n\n")
                 elif "orchestration" in item:
                     orchestration_data = item["orchestration"]
+                    logger.debug(f"[{idx}] Start Created orchestration")
                     agent = await self.build_orchestration(orchestration_data)
                     agents.append(agent)
                     logger.debug(
-                        f"[{idx}] Created orchestration: {orchestration_data.get('name')}"
+                        f"[{idx}] Success Created orchestration: {orchestration_data.get('name')}\n\n"
                     )
                 else:
                     raise ValueError("Invalid item at index {idx}: {item}")
@@ -103,24 +106,24 @@ class AgentFactory:
                 agent_data.get("llm"), self.llmRegistry, "LLM"
             )
             tools = self._get_registry_item(
-                agent_data.get("tools"), self.toolRegistry, "Tool"
+                agent_data.get("tool"), self.toolRegistry, "Tool"
             )
 
             if agent_data.get("llm") and not llm:
                 raise ValueError(f"LLM '{agent_data['llm']}' not found in registry")
-            if agent_data.get("tools") and not tools:
-                raise ValueError(f"Tool '{agent_data['tools']}' not found in registry")
+            if agent_data.get("tool") and not tools:
+                raise ValueError(f"Tool '{agent_data['tool']}' not found in registry")
 
             agent_data_copy = {
                 k: v
                 for k, v in agent_data.items()
-                if k not in ("llm", "tools", "agent_builder_list")
+                if k not in ("llm", "tool", "agent_builder_list")
             }
             agent_data_copy = copy.deepcopy(agent_data_copy)
             if llm is not None:
                 agent_data_copy["llm"] = llm
             if tools is not None:
-                agent_data_copy["tools"] = tools
+                agent_data_copy["tool"] = tools
             if "agent_builder_list" in agent_data:
                 agent_data_copy["agent_builder_list"] = agent_data["agent_builder_list"]
             await builder(**agent_data_copy)
@@ -156,7 +159,6 @@ class AgentFactory:
                         f"Processing agent in orchestration: {item['agent'].get('name')}"
                     )
                     agent = await self.build_agent(item["agent"])
-                    print(agent.name)
                     agents.append(agent)
                 elif "orchestration" in item:
                     logger.info(

@@ -12,7 +12,7 @@ json_data = """
             "agent": {
               "type": "reactagentbuilder",
               "llm": "gpt-4o-mini",
-              "tools": "research_tool",
+              "tool": "research_tool",
               "name": "test1",
               "description": null,
               "prompt": null,
@@ -23,7 +23,7 @@ json_data = """
             "agent": {
               "type": "reactagentbuilder",
               "llm": "gpt-4o-mini",
-              "tools": "research_tool",
+              "tool": "research_tool",
               "name": "test2",
               "description": null,
               "prompt": null,
@@ -41,7 +41,7 @@ json_data = """
                   "agent": {
                     "type": "reactagentbuilder",
                     "llm": "gpt-4o-mini",
-                    "tools": "research_tool",
+                    "tool": "research_tool",
                     "name": "test3",
                     "description": null,
                     "prompt": null,
@@ -52,7 +52,7 @@ json_data = """
                   "agent": {
                     "type": "reactagentbuilder",
                     "llm": "gpt-4o-mini",
-                    "tools": "research_tool",
+                    "tool": "research_tool",
                     "name": "test4",
                     "description": null,
                     "prompt": null,
@@ -69,7 +69,7 @@ json_data = """
       "agent": {
         "type": "reactagentbuilder",
         "llm": "gpt-4o-mini",
-        "tools": "research_tool",
+        "tool": "research_tool",
         "name": "agenttest1"
       }
     },
@@ -77,7 +77,7 @@ json_data = """
       "agent": {
         "type": "reactagentbuilder",
         "llm": "gpt-4o-mini",
-        "tools": "research_tool",
+        "tool": "research_tool",
         "name": "agenttest2",
         "description": null,
         "prompt": null,
@@ -88,7 +88,40 @@ json_data = """
       "agent": {
         "type": "reactagentbuilder",
         "llm": "gpt-4o-mini",
-        "tools": "research_tool",
+        "tool": "research_tool",
+        "name": "testtest",
+        "description": null,
+        "prompt": null,
+        "config": null
+      }
+    },
+    {
+      "agent": {
+        "type": "reactagentbuilder",
+        "llm": "gpt-4o-mini",
+        "tool": "research_tool",
+        "name": "testtes234234t",
+        "description": null,
+        "prompt": null,
+        "config": null
+      }
+    },
+    {
+      "agent": {
+        "type": "reactagentbuilder",
+        "llm": "gpt-4o-mini",
+        "tool": "research_tool",
+        "name": "te234234234234sttest",
+        "description": null,
+        "prompt": null,
+        "config": null
+      }
+    },
+    {
+      "agent": {
+        "type": "reactagentbuilder",
+        "llm": "gpt-4o-mini",
+        "tool": "research_tool",
         "name": "agenttest3",
         "description": null,
         "prompt": null,
@@ -99,3 +132,5 @@ json_data = """
 }
 
 """
+
+카테고리, 함수 명(체크), 

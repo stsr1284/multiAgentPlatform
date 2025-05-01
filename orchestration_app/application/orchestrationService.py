@@ -2,8 +2,8 @@ from pydantic import Field
 from orchestration_app.domain.interfaces.AgentRepositoryInterface import (
     AgentRepositoryInterface,
 )
-from shared.loggin_config import logger  # test
-from domain.entities.BaseAgent import BaseAgent
+from orchestration_app.shared.loggin_config import logger  # test
+from orchestration_app.domain.entities.BaseAgent import BaseAgent
 
 
 class OrchestrationService:
@@ -31,9 +31,10 @@ class OrchestrationService:
                 logger.warning("No agents found.")
                 raise ValueError("No agents available.")
 
-            # selected_agents = {name: agent for name, agent in all_agents.items() if name in agent_list}
-            values = [all_agents[key] for key in agent_list]
-            # orchestrator = or
+            selected_agents = [all_agents[key] for key in agent_list]
+            if not selected_agents:
+                logger.warning("No matching agents found.")
+                raise ValueError("No matching agents found.")
 
         except Exception as e:
             logger.error(f"Execution failed: {str(e)}")

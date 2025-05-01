@@ -1,9 +1,10 @@
 from langchain_core.language_models.chat_models import BaseChatModel
-from orchestration_app.shared.loggin_config import logger
+from shared.loggin_config import logger
 from langgraph_supervisor import create_supervisor
 from typing import Optional, Callable, Any
 from langchain_core.tools import BaseTool
-from .BaseBuilder import BaseBuilder
+
+from domain.Builder.BaseBuilder import BaseBuilder
 
 # 입력 예시
 # self.llms: Optional[List[BaseChatModel]] = None
@@ -33,13 +34,12 @@ class SupervisorAgentBuilder(BaseBuilder):
             if name is None:
                 raise ValueError("name가 필요합니다")
             self.name = name
-            print(f"kwargs: {kwargs}")
             llms = kwargs.get("llm")
             if llms is None:
                 raise ValueError("llms가 필요합니다.")
             self.llm = llms[0]
 
-            tools = kwargs.get("tools")
+            tools = kwargs.get("tool")
             if tools:
                 self.tools = tools
 
@@ -52,11 +52,11 @@ class SupervisorAgentBuilder(BaseBuilder):
                 raise ValueError("agent_builder_list가 필요합니다.")
             self.agent_builder_list = agent_builder_list
             agent_list = []
-            print("여긴가?")
-            for agent in self.agent_builder_list:
-                print(agent.name)
+            for agent in self.agent_builder_list:  # test
+                print(
+                    f"type: {agent.type}, name: {agent.name}, llm: {agent.llm.model_name}"
+                )  # test
                 agent_list.append(await agent.build())
-            print("여긴가?")
             self.agent_list = agent_list
             members = [agent.name for agent in self.agent_builder_list]
             options = ["FINISH"] + members
@@ -89,6 +89,13 @@ class SupervisorAgentBuilder(BaseBuilder):
             logger.error(f"error: {e}")
             raise
         return compiled_graph
+
+
+async def register_builder(registry):
+    try:
+        await registry.register(SupervisorAgentBuilder)
+    except Exception as e:
+        raise
 
 
 # class SupervisorAgentBuilder(BaseOrchestrationBuilder):

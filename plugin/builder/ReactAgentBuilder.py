@@ -2,8 +2,8 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langgraph.prebuilt import create_react_agent
 from typing import Optional, Callable, Any
 from langchain_core.tools import BaseTool
-from .BaseBuilder import BaseBuilder
-from orchestration_app.shared.loggin_config import logger
+from domain.Builder.BaseBuilder import BaseBuilder
+from shared.loggin_config import logger
 
 
 class ReactAgentBuilder(BaseBuilder):
@@ -19,7 +19,6 @@ class ReactAgentBuilder(BaseBuilder):
     async def __call__(self, **kwargs):
         try:
             logger.debug("ReactAgentBuilder __call__")
-            logger.debug(f"kwargs: {kwargs}")
             name = kwargs.get("name")
             if name is None:
                 raise ValueError("name가 필요합니다")
@@ -29,7 +28,7 @@ class ReactAgentBuilder(BaseBuilder):
                 raise ValueError("llm가 필요합니다.")
             self.llm = llms[0]
 
-            tools = kwargs.get("tools")
+            tools = kwargs.get("tool")
             if tools:
                 self.tools = tools
 
@@ -44,8 +43,11 @@ class ReactAgentBuilder(BaseBuilder):
             config = kwargs.get("config")
             if config:
                 self.config = config
+
+            logger.info(
+                f"[Agent Info] type: {self.type}, name: {self.name}, llm: {self.llm.model_name}"
+            )
         except Exception as e:
-            print("ReactAgentBuilder init error:", e)
             raise e
 
     async def build(self):
@@ -58,9 +60,15 @@ class ReactAgentBuilder(BaseBuilder):
                 config_schema=self.config,
             )
         except Exception as e:
-            print("ReactAgentBuilder build error:", e)
             raise e
         return graph
+
+
+async def register_builder(registry):
+    try:
+        await registry.register(ReactAgentBuilder)
+    except Exception as e:
+        raise e
 
 
 # class ReactAgentBuilder(BaseBuilder):
