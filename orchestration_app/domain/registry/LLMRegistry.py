@@ -1,4 +1,4 @@
-from orchestration_app.domain.registry.BaseRegistry import BaseRegistry
+from domain.registry.BaseRegistry import BaseRegistry
 
 
 class LLMRegistry(BaseRegistry):

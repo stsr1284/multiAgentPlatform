@@ -2,7 +2,8 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langgraph.prebuilt import create_react_agent
 from typing import Optional, Callable, Any
 from langchain_core.tools import BaseTool
-from .BaseBuilder import BaseBuilder
+from domain.Builder.BaseBuilder import BaseBuilder
+from shared.loggin_config import logger
 
 
 class ReactAgentBuilder(BaseBuilder):
@@ -17,32 +18,36 @@ class ReactAgentBuilder(BaseBuilder):
 
     async def __call__(self, **kwargs):
         try:
-            names = kwargs.get("names")
-            if names is None:
-                raise ValueError("names가 필요합니다")
-            self.name = names[0]
-            llms = kwargs.get("llms")
+            logger.debug("ReactAgentBuilder __call__")
+            name = kwargs.get("name")
+            if name is None:
+                raise ValueError("name가 필요합니다")
+            self.name = name
+            llms = kwargs.get("llm")
             if llms is None:
-                raise ValueError("llms가 필요합니다.")
+                raise ValueError("llm가 필요합니다.")
             self.llm = llms[0]
 
-            tools = kwargs.get("tools")
+            tools = kwargs.get("tool")
             if tools:
                 self.tools = tools
 
-            prompts = kwargs.get("prompts")
+            prompts = kwargs.get("prompt")
             if prompts:
-                self.prompt = prompts[0]
+                self.prompt = prompts
 
             description = kwargs.get("description")
             if description:
-                self.description = description[0]
+                self.description = description
 
             config = kwargs.get("config")
             if config:
                 self.config = config
+
+            logger.info(
+                f"[Agent Info] type: {self.type}, name: {self.name}, llm: {self.llm.model_name}"
+            )
         except Exception as e:
-            print("ReactAgentBuilder init error:", e)
             raise e
 
     async def build(self):
@@ -55,9 +60,15 @@ class ReactAgentBuilder(BaseBuilder):
                 config_schema=self.config,
             )
         except Exception as e:
-            print("ReactAgentBuilder build error:", e)
             raise e
         return graph
+
+
+async def register(registry):
+    try:
+        await registry.register(ReactAgentBuilder)
+    except Exception as e:
+        raise e
 
 
 # class ReactAgentBuilder(BaseBuilder):

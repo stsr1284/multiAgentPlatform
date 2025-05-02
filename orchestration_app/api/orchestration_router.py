@@ -1,121 +1,107 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
-
-
-from orchestration_app.domain.entities.AgentDefinition import AgentDefinition
-
-from orchestration_app.domain.orchestrators.ManagementOrchestrator import (
-    ManagementOrchestrator,
-)  # test
-from orchestration_app.domain.orchestrators.CollaborationOrchestrator import (
-    CollaborationOrchestrator,
-)  # test
-
-from orchestration_app.domain.Builder.SupervisorAgentBuilder import (
-    SupervisorAgentBuilder,
+from container import (
+    tool_registry,
+    llm_registry,
+    agent_builder_registry,
+    agent_factory,
+    agent_registry,
 )
-from langchain_openai import ChatOpenAI  # test
+from domain.registry.ToolRegistry import ToolRegistry
+from domain.registry.LLMRegistry import LLMRegistry
+from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
+from domain.registry.AgentRegistry import AgentRegistry
 
-from langchain.agents import tool  # test
+from langgraph.graph.graph import CompiledGraph  # test
 
-from orchestration_app.domain.registry.ToolRegistry import ToolRegistry
-from orchestration_app.domain.registry.LLMRegistry import LLMRegistry
-from orchestration_app.domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
-from orchestration_app.domain.Builder.ReactAgentBuilder import ReactAgentBuilder
-
-from orchestration_app.utils.config import settings
 
 router = APIRouter()
 
-llmRegistry = LLMRegistry(
-    ChatOpenAI(
-        model="gpt-4o",
-        temperature=0,
-        api_key=settings.OPENAI_API_KEY,
-    ),
-    ChatOpenAI(
-        model="gpt-4o-mini",
-        temperature=0,
-        api_key=settings.OPENAI_API_KEY,
-    ),
-)
 
-llm_name = ["gpt-4o-mini"]
-llms = []
-llms = [llmRegistry.get(name) for name in llm_name if llmRegistry.get(name) is not None]
+def get_tool_registry():
+    # Assuming ToolRegistry is a singleton or similar
+    return tool_registry
 
 
-@tool
-def research_tool(topic: str) -> str:
-    """A simple research tool that takes a topic and returns a research statement."""
-    if not isinstance(topic, str):
-        raise ValueError("Topic must be a string.")
-    if not topic:
-        raise ValueError("Topic cannot be empty.")
-    return f"Researching the topic: {topic}"
+def get_llm_registry():
+    # Assuming LLMRegistry is a singleton or similar
+    return llm_registry
 
 
-@tool
-def search_urls(urls: list[str], urllens: int):
-    """A simple search tool that takes a list of URLs and returns a list of search results."""
-    if not isinstance(urls, list):
-        raise ValueError("URLs must be a list.")
-    if not urls:
-        raise ValueError("URLs cannot be empty.")
-    if not all(isinstance(url, str) for url in urls):
-        raise ValueError("All URLs must be strings.")
-    return f"Searching the following URLs: {urls}"
+def get_agent_builder_registry():
+    # Assuming AgentBuilderRegistry is a singleton or similar
+    return agent_builder_registry
 
 
-toolRegistry = ToolRegistry(
-    research_tool,
-    search_urls,
-)
-
-tool_names = ["research_tool", "search_urls"]
-tools = []
-tools = [
-    toolRegistry.get(name) for name in tool_names if toolRegistry.get(name) is not None
-]
-# tools = [toolRegistry.get("research_tool")]
-
-print("tool Name: ", tools)
-
-agentBuilderRegistry = AgentBuilderRegistry(
-    ReactAgentBuilder(), SupervisorAgentBuilder()
-)
+def get_agent_registry():
+    # Assuming AgentRegistry is a singleton or similar
+    return agent_registry
 
 
-test_agent = agentBuilderRegistry.get("reactagentbuilder")
-print("test_agent:", test_agent.type)
+@router.get("/get_tools")
+async def get_tools(
+    tool_registry: ToolRegistry = Depends(get_tool_registry),
+    llm_registry: LLMRegistry = Depends(get_llm_registry),
+    agent_builder_registry: AgentBuilderRegistry = Depends(get_agent_builder_registry),
+    agent_registry: AgentRegistry = Depends(get_agent_registry),
+):
+    try:
+        # Assuming agent_factory is defined and has a method to get tools
+        print("-----------Registry Info----------")
+        tools = await tool_registry.get_all()
+        [print("tool: ", key, " ", value) for key, value in tools.items()]
+        llms = await llm_registry.get_all()
+        [print("llm: ", key, " ", value) for key, value in llms.items()]
+        agent_builders = await agent_builder_registry.get_all()
+        [
+            print(
+                "agent_builder: ",
+                key,
+                " ",
+                value,
+            )
+            for key, value in agent_builders.items()
+        ]
+        agents = await agent_registry.get_all()
+        [
+            print(
+                "agent_registry: ",
+                key,
+                " ",
+                value,
+            )
+            for key, value in agents.items()
+        ]
+        print("-----------Registry Info----------")
+        return True
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
-supervisor_agent = agentBuilderRegistry.get("supervisoragentbuilder")
-# agent1 = AgentDefinition(
-#     llm=llmRegistry.get("gpt-4o"),
-#     name="researcher_agent",
-#     tools=[toolRegistry.get("research_tool")],
-#     description="Transfer the user to the researcher_agent to perform research and implement the solution to the user's request.",
-#     prompt="go to the planner_agent and call the research_tool",
-#     config={"recursion_limit": 3},
-# )
-# agent2 = AgentDefinition(
-#     llm=llmRegistry.get("gpt-4o-mini"),
-#     name="planner_agent",
-#     tools=[toolRegistry.get("search_urls")],
-#     description="go to the researcher_agent and call the search_urls",
-#     prompt="""
-#     go to the researcher_agent and call the search_urls tool.
-# """,
-#     config={},
-# )
 
+@router.get("/test_agent")
+async def test_agent(
+    question: str,
+    agent_registry: AgentRegistry = Depends(get_agent_registry),
+):
+    try:
+        # Assuming agent_factory is defined and has a method to get tools
+        builders = await agent_registry.get_all()
+        agents = [await builder.build() for builder in builders.values()]
+        question = question
+        input = {
+            "messages": [
+                {
+                    "role": "user",
+                    "content": question,
+                }
+            ]
+        }
+        results = [await agent.ainvoke(input) for agent in agents]
+        [print(result["messages"][-1].pretty_print(), "\n\n") for result in results]
 
-async def stream_async(graph, inputs):
-    async for chunk in graph.astream(inputs, stream_mode="values"):
-        chunk["messages"][-1].pretty_print()
-        final_message = chunk["messages"][-1]
-
-    return final_message
+        return True
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.post("/run-agent")
@@ -139,26 +125,9 @@ async def run_orchestration(
             " ",
             orchestrator_type,
         )
+        agent_list = await agent_factory.create_agents_from_json(json_data)
+        good_agent_list = [await agent.build() for agent in agent_list]
         question = "user your tool"
-        await test_agent(llms=llms, tools=tools, names=["palnner"])
-        print("1")
-        print("test_agent name: ", test_agent.name)
-        await supervisor_agent(
-            llms=llms, names=["travelsupervisor"], agent_builder_list=[test_agent]
-        )
-        print("2")
-        graph = await supervisor_agent.build()
-        print("3")
-        # result = graph.invoke(
-        #     {
-        #         "messages": [
-        #             {
-        #                 "role": "user",
-        #                 "content": question,
-        #             }
-        #         ]
-        #     }
-        # )
         input = {
             "messages": [
                 {
@@ -167,10 +136,11 @@ async def run_orchestration(
                 }
             ]
         }
-        result = await stream_async(graph, input)
-        print("4")
-        print("run_orchestration result:", result)
-        return {"result": result}
+        results = [agent.invoke(input) for agent in good_agent_list]
+        # [print(result["messages"][-1].content, "\n\n") for result in results]
+        [print(result["messages"][-1].pretty_print(), "\n\n") for result in results]
+
+        return True
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
