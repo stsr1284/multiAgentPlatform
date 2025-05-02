@@ -1,9 +1,18 @@
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
-from container import tool_registry, llm_registry, agent_builder_registry, agent_factory
+from container import (
+    tool_registry,
+    llm_registry,
+    agent_builder_registry,
+    agent_factory,
+    agent_registry,
+)
 from domain.registry.ToolRegistry import ToolRegistry
 from domain.registry.LLMRegistry import LLMRegistry
 from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
+from domain.registry.AgentRegistry import AgentRegistry
+
+from langgraph.graph.graph import CompiledGraph  # test
 
 
 router = APIRouter()
@@ -24,11 +33,17 @@ def get_agent_builder_registry():
     return agent_builder_registry
 
 
+def get_agent_registry():
+    # Assuming AgentRegistry is a singleton or similar
+    return agent_registry
+
+
 @router.get("/get_tools")
 async def get_tools(
     tool_registry: ToolRegistry = Depends(get_tool_registry),
     llm_registry: LLMRegistry = Depends(get_llm_registry),
     agent_builder_registry: AgentBuilderRegistry = Depends(get_agent_builder_registry),
+    agent_registry: AgentRegistry = Depends(get_agent_registry),
 ):
     try:
         # Assuming agent_factory is defined and has a method to get tools
@@ -47,7 +62,43 @@ async def get_tools(
             )
             for key, value in agent_builders.items()
         ]
+        agents = await agent_registry.get_all()
+        [
+            print(
+                "agent_registry: ",
+                key,
+                " ",
+                value,
+            )
+            for key, value in agents.items()
+        ]
         print("-----------Registry Info----------")
+        return True
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/test_agent")
+async def test_agent(
+    question: str,
+    agent_registry: AgentRegistry = Depends(get_agent_registry),
+):
+    try:
+        # Assuming agent_factory is defined and has a method to get tools
+        builders = await agent_registry.get_all()
+        agents = [await builder.build() for builder in builders.values()]
+        question = question
+        input = {
+            "messages": [
+                {
+                    "role": "user",
+                    "content": question,
+                }
+            ]
+        }
+        results = [await agent.ainvoke(input) for agent in agents]
+        [print(result["messages"][-1].pretty_print(), "\n\n") for result in results]
+
         return True
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

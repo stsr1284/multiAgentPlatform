@@ -1,16 +1,26 @@
+from file_watcher_system.handlers.agent_config_handler import create_config_handler
+from file_watcher_system.handlers.plugin_handler import create_plugin_handler
+from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
+from application.InitializeService import InitializeService
+from application.SetupAgentSystem import SetupAgentSystem
+from file_watcher_system.FileWatcher import FileWatcher
+from domain.registry.AgentRegistry import AgentRegistry
 from domain.registry.ToolRegistry import ToolRegistry
 from domain.registry.LLMRegistry import LLMRegistry
-from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
-from application.AgentFactory import AgentFactory
-from utils.config import settings
-from application.PluginLoader import AsyncPluginLoader
 from application.PluginManager import PluginManager
+from application.AgentFactory import AgentFactory
 
 tool_registry = ToolRegistry()
 llm_registry = LLMRegistry()
 agent_builder_registry = AgentBuilderRegistry()
+agent_registry = AgentRegistry()
 
-agent_factory = AgentFactory(agent_builder_registry, llm_registry, tool_registry)
+agent_factory = AgentFactory(
+    agentBuilderRegistry=agent_builder_registry,
+    llmRegistry=llm_registry,
+    toolRegistry=tool_registry,
+    agentRegistry=agent_registry,
+)
 
 plugin_manager = PluginManager(
     registrys={
@@ -20,16 +30,27 @@ plugin_manager = PluginManager(
     }
 )
 
-plugin_loader = AsyncPluginLoader(
-    plugin_base="plugin",
+watcher = FileWatcher("plugin")
+watcher.register_handler(create_plugin_handler(plugin_manager))
+watcher.register_handler(create_config_handler(agent_factory))
+
+setup_agent_system = SetupAgentSystem(
+    base_path="plugin",
     plugin_manager=plugin_manager,
+    agent_factory=agent_factory,
 )
 
-# 이 container 객체들을 전역으로 공유할 수 있도록 export
+initialize_service = InitializeService(
+    file_watcher=watcher,
+    setup_agent_system=setup_agent_system,
+)
+
 __all__ = [
     "tool_registry",
     "llm_registry",
     "agent_builder_registry",
+    "agent_registry",
     "agent_factory",
-    "plugin_loader",
+    "watcher",
+    "initialize_service",
 ]

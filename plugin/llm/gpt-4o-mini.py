@@ -8,5 +8,4 @@ llmModel = ChatOpenAI(
 
 
 async def register(registry):
-    print("llm 먹인다잉")
     await registry.register(llmModel)

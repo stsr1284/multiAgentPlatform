@@ -1,6 +1,6 @@
 from api.orchestration_router import router as orchestration_router
 from contextlib import asynccontextmanager
-from container import plugin_loader
+from container import watcher, initialize_service
 from shared.loggin_config import logger
 from fastapi import FastAPI
 import asyncio
@@ -8,14 +8,13 @@ import asyncio
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # startup
     logger.info("Starting up...")
-    await plugin_loader.setup()
-    asyncio.create_task(plugin_loader.watch())
+    await initialize_service.setup_and_watcher_start()
 
     yield
-    # shutdown
+
     logger.info("Shutting down...")
+    await initialize_service.stop()
 
 
 app = FastAPI(title="Orchestration App", lifespan=lifespan)

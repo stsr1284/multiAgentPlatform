@@ -2,6 +2,7 @@ from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
 from domain.registry.LLMRegistry import LLMRegistry
 from domain.registry.ToolRegistry import ToolRegistry
 from domain.Builder.BaseBuilder import BaseBuilder
+from domain.registry.AgentRegistry import AgentRegistry
 from shared.loggin_config import logger
 from typing import List, Dict, Any, Union
 import copy
@@ -15,10 +16,12 @@ class AgentFactory:
         agentBuilderRegistry: AgentBuilderRegistry,
         llmRegistry: LLMRegistry,
         toolRegistry: ToolRegistry,
+        agentRegistry: AgentRegistry,
     ):
         self.agentBuilderRegistry = agentBuilderRegistry
         self.llmRegistry = llmRegistry
         self.toolRegistry = toolRegistry
+        self.agentRegistry = agentRegistry
 
     async def create_agents_from_json(self, data: str) -> List[BaseBuilder]:
         """
@@ -33,7 +36,8 @@ class AgentFactory:
         Raises:
             ValueError: JSON 형식이 유효하지 않거나 필수 필드가 누락된 경우.
         """
-        json_data = self._load_json(data)
+        # json_data = self._load_json(data)
+        json_data = data
 
         agents = []
         logger.info("Starting agent creation from JSON")
@@ -75,7 +79,7 @@ class AgentFactory:
         # test
         for agent in agents:
             logger.info(f"Agent created: {agent.name}")
-        return agents
+        await self.agentRegistry.reset(agents)
 
     async def build_agent(self, agent_data: Dict[str, Any]) -> Any:
         """
@@ -96,16 +100,16 @@ class AgentFactory:
             if "type" not in agent_data:
                 raise ValueError("Missing 'type' in agent data")
 
-            builder = self.agentBuilderRegistry.get(agent_data["type"])
+            builder = await self.agentBuilderRegistry.get(agent_data["type"])
             if not builder:
                 raise ValueError(
                     f"Agent builder not found for type: {agent_data['type']}"
                 )
 
-            llm = self._get_registry_item(
+            llm = await self._get_registry_item(
                 agent_data.get("llm"), self.llmRegistry, "LLM"
             )
-            tools = self._get_registry_item(
+            tools = await self._get_registry_item(
                 agent_data.get("tool"), self.toolRegistry, "Tool"
             )
 
@@ -190,7 +194,7 @@ class AgentFactory:
         except json.JSONDecodeError as e:
             raise ValueError(f"Invalid JSON format: {e}")
 
-    def _get_registry_item(
+    async def _get_registry_item(
         self,
         input_data: Union[str, List[str]],
         registry: Dict[str, Any],
@@ -218,7 +222,7 @@ class AgentFactory:
         for item_name in item_names:
             if not item_name:
                 continue
-            item = registry.get(item_name)
+            item = await registry.get(item_name)
             if not item:
                 raise ValueError(f"{type} '{item_name}' not found in registry")
             item_list.append(item)
