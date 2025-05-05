@@ -1,12 +1,12 @@
 from domain.registry.BaseRegistry import BaseRegistry
-from domain.Builder.BaseBuilder import BaseBuilder
+from domain.builder.BaseBuilder import BaseBuilder
 from shared.loggin_config import logger
 
 
 class AgentBuilderRegistry(BaseRegistry):
 
     def get_item_name(self, builder_cls: BaseBuilder) -> str:
-        temp_instance = builder_cls()  # 임시 인스턴스 생성
+        temp_instance = builder_cls()
         return temp_instance.type
 
     async def get(self, name: str) -> BaseBuilder:
@@ -15,7 +15,7 @@ class AgentBuilderRegistry(BaseRegistry):
             if builder_cls is None:
                 raise ValueError(f"{name} not found in {self.__class__.__name__}")
             logger.info(f"Item {name} found in {self.__class__.__name__}")
-            return builder_cls()  # 새 인스턴스 만들어서 리턴
+            return builder_cls()
 
 
 # class AgentBuilderRegistry(BaseRegistry):

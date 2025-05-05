@@ -6,14 +6,17 @@ from container import (
     agent_builder_registry,
     agent_factory,
     agent_registry,
+    orchestrator_registry,
 )
 from domain.registry.ToolRegistry import ToolRegistry
 from domain.registry.LLMRegistry import LLMRegistry
 from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
 from domain.registry.AgentRegistry import AgentRegistry
 
-from langgraph.graph.graph import CompiledGraph  # test
+from application.OrchestrationService import OrchestrationService
 
+# test
+from fastapi import Request
 
 router = APIRouter()
 
@@ -38,6 +41,19 @@ def get_agent_registry():
     return agent_registry
 
 
+def get_orchestrator_registry():  # test
+    # Assuming OrchestratorRegistry is a singleton or similar
+    return orchestrator_registry
+
+
+orchestrationService = OrchestrationService(
+    agent_registry=get_agent_registry(),
+    orchestrator_registry=get_orchestrator_registry(),
+)  # test
+
+from domain.entyties.UserInput import UserInput
+
+
 @router.get("/get_tools")
 async def get_tools(
     tool_registry: ToolRegistry = Depends(get_tool_registry),
@@ -46,7 +62,6 @@ async def get_tools(
     agent_registry: AgentRegistry = Depends(get_agent_registry),
 ):
     try:
-        # Assuming agent_factory is defined and has a method to get tools
         print("-----------Registry Info----------")
         tools = await tool_registry.get_all()
         [print("tool: ", key, " ", value) for key, value in tools.items()]
@@ -106,13 +121,15 @@ async def test_agent(
 
 @router.post("/run-agent")
 async def run_orchestration(
+    request: Request,  # test
     session: str,
     user_id: str,
     query: str,
     agent_list: list[str],
-    orchestrator_type: str = "supervisor",
+    orchestrator_type: str = "testsupervisor1",
 ):
     try:
+        checkpointer = request.app.state.checkpointer
         print(
             "run_orchestration: ",
             user_id,
@@ -125,22 +142,21 @@ async def run_orchestration(
             " ",
             orchestrator_type,
         )
-        agent_list = await agent_factory.create_agents_from_json(json_data)
-        good_agent_list = [await agent.build() for agent in agent_list]
-        question = "user your tool"
-        input = {
-            "messages": [
-                {
-                    "role": "user",
-                    "content": question,
-                }
-            ]
-        }
-        results = [agent.invoke(input) for agent in good_agent_list]
-        # [print(result["messages"][-1].content, "\n\n") for result in results]
-        [print(result["messages"][-1].pretty_print(), "\n\n") for result in results]
-
-        return True
+        userInput = UserInput(
+            session=session,
+            id=user_id,
+            query=query,
+            agent_list=agent_list,
+            orchestrator_type=orchestrator_type,
+        )
+        # checkpointer 가져와서 ochekstrationService에 넣어주기
+        result = await orchestrationService.run(
+            user_input=userInput, checkpointer=checkpointer
+        )
+        for message in result["messages"]:
+            print(f"{message}\n")
+        # result 마지막이 orchestrator(최종 결과가 아니면 interrupt)
+        return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -176,6 +192,21 @@ async def stream_orchestration(
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+        # agent_list = await agent_factory.create_agents_from_json(json_data)
+        # good_agent_list = [await agent.build() for agent in agent_list]
+        # question = "user your tool"
+        # input = {
+        #     "messages": [
+        #         {
+        #             "role": "user",
+        #             "content": question,
+        #         }
+        #     ]
+        # }
+        # results = [agent.invoke(input) for agent in good_agent_list]
+        # # [print(result["messages"][-1].content, "\n\n") for result in results]
+        # [print(result["messages"][-1].pretty_print(), "\n\n") for result in results]
 
 
 # @router.post("/register")

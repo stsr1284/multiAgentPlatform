@@ -1,8 +1,8 @@
 from langchain_core.language_models.chat_models import BaseChatModel
+from domain.builder.BaseBuilder import BaseBuilder
 from langgraph.prebuilt import create_react_agent
 from typing import Optional, Callable, Any
 from langchain_core.tools import BaseTool
-from domain.Builder.BaseBuilder import BaseBuilder
 from shared.loggin_config import logger
 
 
@@ -18,7 +18,6 @@ class ReactAgentBuilder(BaseBuilder):
 
     async def __call__(self, **kwargs):
         try:
-            logger.debug("ReactAgentBuilder __call__")
             name = kwargs.get("name")
             if name is None:
                 raise ValueError("name가 필요합니다")
@@ -58,6 +57,7 @@ class ReactAgentBuilder(BaseBuilder):
                 name=self.name,
                 prompt=self.prompt,
                 config_schema=self.config,
+                version="v2",
             )
         except Exception as e:
             raise e
@@ -69,23 +69,6 @@ async def register(registry):
         await registry.register(ReactAgentBuilder)
     except Exception as e:
         raise e
-
-
-# class ReactAgentBuilder(BaseBuilder):
-#     async def __call__(self, **kwargs):
-#         profile = AgentDefinition(**kwargs)
-#         self.name = profile
-
-
-#     async def build(self, profile):
-#         graph = create_react_agent(
-#             model=profile.llm,
-#             tools=profile.tools,
-#             name=profile.name,
-#             prompt=profile.prompt,
-#             config_schema=profile.config,
-#         )
-#         return graph
 
 
 # 파서
