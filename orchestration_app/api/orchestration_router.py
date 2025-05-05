@@ -7,6 +7,7 @@ from container import (
     agent_factory,
     agent_registry,
     orchestrator_registry,
+    graph_registry,
 )
 from domain.registry.ToolRegistry import ToolRegistry
 from domain.registry.LLMRegistry import LLMRegistry
@@ -14,6 +15,10 @@ from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
 from domain.registry.AgentRegistry import AgentRegistry
 
 from application.OrchestrationService import OrchestrationService
+
+from langgraph.types import Command  # test
+from domain.entyties.InterruptThreadGraph import InterruptThreadGraph  # test
+
 
 # test
 from fastapi import Request
@@ -49,6 +54,7 @@ def get_orchestrator_registry():  # test
 orchestrationService = OrchestrationService(
     agent_registry=get_agent_registry(),
     orchestrator_registry=get_orchestrator_registry(),
+    graph_registry=graph_registry,
 )  # test
 
 from domain.entyties.UserInput import UserInput
@@ -159,6 +165,30 @@ async def run_orchestration(
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/chat/resume")
+async def resume_orchestration(thread_id: str, response: str):
+    item: InterruptThreadGraph = await graph_registry.get(thread_id)
+    graph = item.graph
+    if graph is None:
+        raise HTTPException(status_code=404, detail="Graph not found")
+    config = {"configurable": {"thread_id": thread_id}}
+    async for event in graph.astream(
+        Command(resume=response),
+        config,
+        stream_mode="updates",
+    ):
+        print("----------------")
+        for key, value in event.items():
+            if key == "__interrupt__":
+                print("interrupt 발생")
+                print(value)
+            else:
+                print("messages 발생")
+                print(key, ": ", value["messages"][-1].content)
+        print("-------------------")
+    return {"status": "success"}
 
 
 @router.get("/stream")

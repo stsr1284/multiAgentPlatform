@@ -13,6 +13,8 @@ from domain.registry.LLMRegistry import LLMRegistry
 from application.PluginManager import PluginManager
 from application.AgentFactory import AgentFactory
 
+from domain.registry.GraphRegistry import GraphRegistry  # test
+
 from application.OrchestratorBuilder import OrchestratorBuilder  # test
 from domain.registry.OrchestratorRegistry import OrchestratorRegistry  # test
 
@@ -20,6 +22,7 @@ tool_registry = ToolRegistry()
 llm_registry = LLMRegistry()
 agent_builder_registry = AgentBuilderRegistry()
 agent_registry = AgentRegistry()
+graph_registry = GraphRegistry()  # test
 
 agent_factory = AgentFactory(
     agentBuilderRegistry=agent_builder_registry,
@@ -75,4 +78,5 @@ __all__ = [
     "watcher",
     "initialize_service",
     "orchestrator_registry",  # test
+    "graph_registry",
 ]

@@ -8,6 +8,8 @@ from langgraph.checkpoint.base import BaseCheckpointSaver
 from IPython.display import Image, display
 from langchain_core.runnables.graph import MermaidDrawMethod
 from langgraph.types import Command
+from domain.entyties.InterruptThreadGraph import InterruptThreadGraph  # test
+from domain.registry.GraphRegistry import GraphRegistry  # test
 
 
 class OrchestrationService:
@@ -15,9 +17,11 @@ class OrchestrationService:
         self,
         agent_registry: AgentRegistry,
         orchestrator_registry: OrchestratorRegistry,
+        graph_registry: GraphRegistry,
     ):
         self.agent_registry = agent_registry
         self.orchestrator_registry = orchestrator_registry
+        self.graph_registry = graph_registry
 
     # orchestration받기 userInput받기, orchestariont에 userInput넣으면 builde가 되고
     # orchestration 리턴을 run한다
@@ -63,6 +67,9 @@ class OrchestrationService:
         config = {
             "configurable": {"user_id": user_input.id, "thread_id": user_input.session}
         }
+        config2 = {
+            "configurable": {"user_id": user_input.id, "thread_id": user_input.session}
+        }
         try:
             # result = await graph.ainvoke(
             #     {
@@ -93,13 +100,12 @@ class OrchestrationService:
                     if key == "__interrupt__":
                         print("interrupt 발생")
                         print(value)
-                        # print(value["__interrupt__"].value)
-                        # print(value["__interrupt__"].resumable)
-                        # print(value["__interrupt__"].ns)
-                        # print(value["__interrupt__"].ns[0])
-                        # print(value["__interrupt__"].ns[1])
-                        # print(value["__interrupt__"].ns[2])
-                        # print(value["__interrupt__"].ns[3])
+                        await self.graph_registry.register(
+                            InterruptThreadGraph(
+                                thread_id=user_input.session,
+                                graph=graph,
+                            )
+                        )
                     else:
                         print("messages 발생")
                         print(key, ": ", value["messages"][-1].content)
@@ -108,15 +114,14 @@ class OrchestrationService:
             # 2025-05-05 16:18:32,530 - psycopg.pool - WARNING - discarding closed connection: <psycopg.AsyncConnection [BAD] at 0x10aa9bb50>
             # 2025-05-05 16:18:32,573 - shared.loggin_config - ERROR - Error building orchestrator: {:shutdown, :db_termination}
             print("재개해볼게!")
-            graph2 = await orchestrator.build(checkpointer)
-            result2 = await graph2.ainvoke(
-                Command(resume="동하깅동하깅!!!!!"),
-                config,
-            )
-            for key, value in result2.items():
-                if key == "messages":
-                    for message in value:
-                        print(f"{message.pretty_print()}\n")
+            # result2 = await graph.ainvoke(
+            #     Command(resume="동하깅동하깅!!!!!"),
+            #     config2,
+            # )
+            # for key, value in result2.items():
+            #     if key == "messages":
+            #         for message in value:
+            #             print(f"{message.pretty_print()}\n")
 
         except Exception as e:
             logger.error(f"Error building orchestrator: {e}")
