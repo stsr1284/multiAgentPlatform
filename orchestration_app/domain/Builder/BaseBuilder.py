@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from langgraph.graph import StateGraph
 
 
 class BaseBuilder(ABC):
@@ -12,5 +13,5 @@ class BaseBuilder(ABC):
         pass
 
     @abstractmethod
-    async def build():
+    async def build() -> StateGraph:
         pass

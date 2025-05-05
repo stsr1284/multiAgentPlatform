@@ -1,7 +1,7 @@
 from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
 from domain.registry.LLMRegistry import LLMRegistry
 from domain.registry.ToolRegistry import ToolRegistry
-from domain.Builder.BaseBuilder import BaseBuilder
+from domain.builder.BaseBuilder import BaseBuilder
 from domain.registry.AgentRegistry import AgentRegistry
 from shared.loggin_config import logger
 from typing import List, Dict, Any, Union
@@ -23,7 +23,7 @@ class AgentFactory:
         self.toolRegistry = toolRegistry
         self.agentRegistry = agentRegistry
 
-    async def create_agents_from_json(self, data: str) -> List[BaseBuilder]:
+    async def create_agents_from_json(self, data: str) -> bool:
         """
         JSON 데이터를 파싱하여 에이전트 리스트를 생성.
 
@@ -46,7 +46,9 @@ class AgentFactory:
             logger.warning(
                 "No 'agent_list' found in JSON data. Returning empty agent list."
             )
-            return agents
+            raise ValueError(
+                "'agent_list' not found in JSON data. Please check the input format."
+            )
         elif "agent_list" in json_data and not isinstance(
             json_data["agent_list"], list
         ):
@@ -61,8 +63,8 @@ class AgentFactory:
                     agent = await self.build_agent(agent_data)
                     agents.append(agent)
                     logger.debug(f"[{idx}] Success Created agent: {agent.name}\n\n")
-                elif "orchestration" in item:
-                    orchestration_data = item["orchestration"]
+                elif "orchestrator" in item:
+                    orchestration_data = item["orchestrator"]
                     logger.debug(f"[{idx}] Start Created orchestration")
                     agent = await self.build_orchestration(orchestration_data)
                     agents.append(agent)
@@ -80,6 +82,7 @@ class AgentFactory:
         for agent in agents:
             logger.info(f"Agent created: {agent.name}")
         await self.agentRegistry.reset(agents)
+        return True
 
     async def build_agent(self, agent_data: Dict[str, Any]) -> Any:
         """
@@ -96,6 +99,7 @@ class AgentFactory:
         Raises:
             ValueError: 필수 필드가 누락되거나 유효하지 않은 경우.
         """
+
         try:
             if "type" not in agent_data:
                 raise ValueError("Missing 'type' in agent data")
@@ -129,14 +133,16 @@ class AgentFactory:
             if tools is not None:
                 agent_data_copy["tool"] = tools
             if "agent_builder_list" in agent_data:
-                agent_data_copy["agent_builder_list"] = agent_data["agent_builder_list"]
+                [
+                    await builder.add_agent(agent)
+                    for agent in agent_data["agent_builder_list"]
+                    if agent
+                ]
             await builder(**agent_data_copy)
         except Exception as e:
             logger.error(f"Error in build_agent: {e}")
             raise
         return builder
-
-        # 에이전트 필수 필드 확인
 
     async def build_orchestration(self, orchestration_data: Dict[str, Any]) -> None:
         """
@@ -164,11 +170,11 @@ class AgentFactory:
                     )
                     agent = await self.build_agent(item["agent"])
                     agents.append(agent)
-                elif "orchestration" in item:
+                elif "orchestrator" in item:
                     logger.info(
-                        f"Processing nested orchestration: {item['orchestration'].get('name')}"
+                        f"Processing nested orchestration: {item['orchestrator'].get('name')}"
                     )
-                    agents.append(await self.build_orchestration(item["orchestration"]))
+                    agents.append(await self.build_orchestration(item["orchestrator"]))
 
                 else:
                     logger.error(f"Invalid item in agent_list: {item}")

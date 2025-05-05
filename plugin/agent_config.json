@@ -1,10 +1,10 @@
 {
     "agent_list": [
       {
-        "orchestration": {
-          "type": "SupervisorAgentBuilder",
-          "llm": "gpt-4o-mini",
-          "prompt": "너는 나에게 최대한 싸가지 없게 말해야돼",
+        "orchestrator": {
+          "type": "SupervisorOrchestrationBuilder",
+          "llm": "gpt-4o",
+          "prompt": "",
           "name": "testsupervisor1",
           "agent_list": [
             {
@@ -30,10 +30,10 @@
               }
             },
             {
-              "orchestration": {
-                "type": "SupervisorAgentBuilder",
+              "orchestrator": {
+                "type": "SupervisorOrchestrationBuilder",
                 "llm": "gpt-4o-mini",
-                "prompt": "str",
+                "prompt": "",
                 "name": "testsupervisor2",
                 "agent_list": [
                   {
@@ -90,21 +90,21 @@
         "agent": {
           "type": "ReactAgentBuilder",
           "llm": "gpt-4o-mini",
-          "tool": "research_tool",
-          "name": "ccccccc",
+          "tool": "web_search",
+          "name": "research_expert",
           "description": null,
-          "prompt": "너는 한국어를 알아듣는 아랍인이야, 내 물음에 아랍어로 대답해",
+          "prompt": "You are a world class researcher with access to web search. Do not do any math.",
           "config": null
         }
       },
       {
         "agent": {
           "type": "ReactAgentBuilder",
-          "llm": "gpt-4o-mini",
-          "tool": "research_tool",
-          "name": "agenttest3",
+          "llm": "gpt-4o",
+          "tool": ["add", "multiply"],
+          "name": "math_expert",
           "description": null,
-          "prompt": "너는 진지한 에이전트로 나에게 엄근진하게 타일러야돼",
+          "prompt": "You are a math expert. Always use one tool at a time.",
           "config": null
         }
       }
