@@ -1,242 +1,163 @@
-from fastapi import APIRouter, Depends, HTTPException
-from fastapi.responses import StreamingResponse
-from container import (
-    tool_registry,
-    llm_registry,
-    agent_builder_registry,
-    agent_factory,
-    agent_registry,
-    orchestrator_registry,
-    graph_registry,
+from domain.execution_strategies.orchestration_astream_strategy import (
+    OrchestrationAStreamStrategy,
 )
-from domain.registry.ToolRegistry import ToolRegistry
-from domain.registry.LLMRegistry import LLMRegistry
-from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
-from domain.registry.AgentRegistry import AgentRegistry
+from domain.execution_strategies.resome_astream_strategy import (
+    ResumeAStreamStrategy,
+)
+from domain.entyties.UserInput import OrchestrationInput, UserInput
+from application.orchestration_service import OrchestrationService
+from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
+from fastapi import APIRouter, Depends
+from application.resume_service import ResumeService
+from fastapi.responses import StreamingResponse
+from .dependencies import (
+    get_orchestration_astream_strategy,
+    get_orchestration_service,
+    get_resume_service,
+    get_checkpointer,
+    get_resume_astream_strategy,
+)
 
-from application.OrchestrationService import OrchestrationService
-
-from langgraph.types import Command  # test
-from domain.entyties.InterruptThreadGraph import InterruptThreadGraph  # test
-
-
-# test
-from fastapi import Request
 
 router = APIRouter()
 
 
-def get_tool_registry():
-    # Assuming ToolRegistry is a singleton or similar
-    return tool_registry
+# @router.get("/get_tools")
+# async def get_tools(
+#     tool_registry: ToolRegistry = Depends(get_tool_registry),
+#     llm_registry: LLMRegistry = Depends(get_llm_registry),
+#     agent_builder_registry: AgentBuilderRegistry = Depends(get_agent_builder_registry),
+#     agent_registry: AgentRegistry = Depends(get_agent_registry),
+# ):
+#     try:
+#         print("-----------Registry Info----------")
+#         tools = await tool_registry.get_all()
+#         [print("tool: ", key, " ", value) for key, value in tools.items()]
+#         llms = await llm_registry.get_all()
+#         [print("llm: ", key, " ", value) for key, value in llms.items()]
+#         agent_builders = await agent_builder_registry.get_all()
+#         [
+#             print(
+#                 "agent_builder: ",
+#                 key,
+#                 " ",
+#                 value,
+#             )
+#             for key, value in agent_builders.items()
+#         ]
+#         agents = await agent_registry.get_all()
+#         [
+#             print(
+#                 "agent_registry: ",
+#                 key,
+#                 " ",
+#                 value,
+#             )
+#             for key, value in agents.items()
+#         ]
+#         print("-----------Registry Info----------")
+#         return True
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
 
 
-def get_llm_registry():
-    # Assuming LLMRegistry is a singleton or similar
-    return llm_registry
+# @router.get("/test_agent")
+# async def test_agent(
+#     question: str,
+#     agent_registry: AgentRegistry = Depends(get_agent_registry),
+# ):
+#     try:
+#         # Assuming agent_factory is defined and has a method to get tools
+#         builders = await agent_registry.get_all()
+#         agents = [await builder.build() for builder in builders.values()]
+#         question = question
+#         input = {
+#             "messages": [
+#                 {
+#                     "role": "user",
+#                     "content": question,
+#                 }
+#             ]
+#         }
+#         results = [await agent.ainvoke(input) for agent in agents]
+#         [print(result["messages"][-1].pretty_print(), "\n\n") for result in results]
+
+#         return True
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
 
 
-def get_agent_builder_registry():
-    # Assuming AgentBuilderRegistry is a singleton or similar
-    return agent_builder_registry
-
-
-def get_agent_registry():
-    # Assuming AgentRegistry is a singleton or similar
-    return agent_registry
-
-
-def get_orchestrator_registry():  # test
-    # Assuming OrchestratorRegistry is a singleton or similar
-    return orchestrator_registry
-
-
-orchestrationService = OrchestrationService(
-    agent_registry=get_agent_registry(),
-    orchestrator_registry=get_orchestrator_registry(),
-    graph_registry=graph_registry,
-)  # test
-
-from domain.entyties.UserInput import UserInput
-
-
-@router.get("/get_tools")
-async def get_tools(
-    tool_registry: ToolRegistry = Depends(get_tool_registry),
-    llm_registry: LLMRegistry = Depends(get_llm_registry),
-    agent_builder_registry: AgentBuilderRegistry = Depends(get_agent_builder_registry),
-    agent_registry: AgentRegistry = Depends(get_agent_registry),
-):
-    try:
-        print("-----------Registry Info----------")
-        tools = await tool_registry.get_all()
-        [print("tool: ", key, " ", value) for key, value in tools.items()]
-        llms = await llm_registry.get_all()
-        [print("llm: ", key, " ", value) for key, value in llms.items()]
-        agent_builders = await agent_builder_registry.get_all()
-        [
-            print(
-                "agent_builder: ",
-                key,
-                " ",
-                value,
-            )
-            for key, value in agent_builders.items()
-        ]
-        agents = await agent_registry.get_all()
-        [
-            print(
-                "agent_registry: ",
-                key,
-                " ",
-                value,
-            )
-            for key, value in agents.items()
-        ]
-        print("-----------Registry Info----------")
-        return True
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@router.get("/test_agent")
-async def test_agent(
-    question: str,
-    agent_registry: AgentRegistry = Depends(get_agent_registry),
-):
-    try:
-        # Assuming agent_factory is defined and has a method to get tools
-        builders = await agent_registry.get_all()
-        agents = [await builder.build() for builder in builders.values()]
-        question = question
-        input = {
-            "messages": [
-                {
-                    "role": "user",
-                    "content": question,
-                }
-            ]
-        }
-        results = [await agent.ainvoke(input) for agent in agents]
-        [print(result["messages"][-1].pretty_print(), "\n\n") for result in results]
-
-        return True
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@router.post("/run-agent")
+@router.post("/chat/astream")
 async def run_orchestration(
-    request: Request,  # test
-    session: str,
-    user_id: str,
-    query: str,
-    agent_list: list[str],
-    orchestrator_type: str = "testsupervisor1",
+    orchestration_input: OrchestrationInput,
+    checkpointer: AsyncPostgresSaver = Depends(get_checkpointer),
+    orchestration_service: OrchestrationService = Depends(get_orchestration_service),
+    strategy: OrchestrationAStreamStrategy = Depends(
+        get_orchestration_astream_strategy
+    ),
 ):
-    try:
-        checkpointer = request.app.state.checkpointer
-        print(
-            "run_orchestration: ",
-            user_id,
-            " ",
-            session,
-            " ",
-            query,
-            " ",
-            agent_list,
-            " ",
-            orchestrator_type,
-        )
-        userInput = UserInput(
-            session=session,
-            id=user_id,
-            query=query,
-            agent_list=agent_list,
-            orchestrator_type=orchestrator_type,
-        )
-        # checkpointer 가져와서 ochekstrationService에 넣어주기
-        result = await orchestrationService.run(
-            user_input=userInput, checkpointer=checkpointer
-        )
-        for message in result["messages"]:
-            print(f"{message}\n")
-        # result 마지막이 orchestrator(최종 결과가 아니면 interrupt)
-        return result
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    astream = await orchestration_service.run(
+        strategy, orchestration_input, checkpointer
+    )
+    return StreamingResponse(astream, media_type="text/event-stream")
 
 
-@router.post("/chat/resume")
-async def resume_orchestration(thread_id: str, response: str):
-    item: InterruptThreadGraph = await graph_registry.get(thread_id)
-    graph = item.graph
-    if graph is None:
-        raise HTTPException(status_code=404, detail="Graph not found")
-    config = {"configurable": {"thread_id": thread_id}}
-    async for event in graph.astream(
-        Command(resume=response),
-        config,
-        stream_mode="updates",
-    ):
-        print("----------------")
-        for key, value in event.items():
-            if key == "__interrupt__":
-                print("interrupt 발생")
-                print(value)
-            else:
-                print("messages 발생")
-                print(key, ": ", value["messages"][-1].content)
-        print("-------------------")
-    return {"status": "success"}
-
-
-@router.get("/stream")
-async def stream_orchestration(
-    query: str,
+@router.post("/chat/astream_resume")
+async def resume_orchestration(
+    user_input: UserInput,
+    resume_service: ResumeService = Depends(get_resume_service),
+    strategy: ResumeAStreamStrategy = Depends(get_resume_astream_strategy),
 ):
-    try:
-        orchestration = ManagementOrchestrator(agent_list=agent_lists, model=llm)
-        print("2")
-        graph = orchestration.execute()
-        input = {
-            "messages": [
-                {
-                    "role": "user",
-                    "content": query,
-                }
-            ]
-        }
+    astream = await resume_service.run(strategy, user_input)
+    return StreamingResponse(astream, media_type="text/event-stream")
 
-        async def stream_async(graph, inputs):
-            try:
-                async for chunk in graph.astream(inputs, stream_mode="values"):
-                    yield chunk["messages"][-1].content
 
-            except Exception as e:
-                yield f"data: {e}\n\n"
+# @router.get("/stream")
+# async def stream_orchestration(
+#     query: str,
+# ):
+#     try:
+#         orchestration = ManagementOrchestrator(agent_list=agent_lists, model=llm)
+#         print("2")
+#         graph = orchestration.execute()
+#         input = {
+#             "messages": [
+#                 {
+#                     "role": "user",
+#                     "content": query,
+#                 }
+#             ]
+#         }
 
-        print("3")
-        return StreamingResponse(
-            stream_async(graph, input), media_type="text/event-stream"
-        )
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+#         async def stream_async(graph, inputs):
+#             try:
+#                 async for chunk in graph.astream(inputs, stream_mode="values"):
+#                     yield chunk["messages"][-1].content
 
-        # agent_list = await agent_factory.create_agents_from_json(json_data)
-        # good_agent_list = [await agent.build() for agent in agent_list]
-        # question = "user your tool"
-        # input = {
-        #     "messages": [
-        #         {
-        #             "role": "user",
-        #             "content": question,
-        #         }
-        #     ]
-        # }
-        # results = [agent.invoke(input) for agent in good_agent_list]
-        # # [print(result["messages"][-1].content, "\n\n") for result in results]
-        # [print(result["messages"][-1].pretty_print(), "\n\n") for result in results]
+#             except Exception as e:
+#                 yield f"data: {e}\n\n"
+
+#         print("3")
+#         return StreamingResponse(
+#             stream_async(graph, input), media_type="text/event-stream"
+#         )
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
+
+# agent_list = await agent_factory.create_agents_from_json(json_data)
+# good_agent_list = [await agent.build() for agent in agent_list]
+# question = "user your tool"
+# input = {
+#     "messages": [
+#         {
+#             "role": "user",
+#             "content": question,
+#         }
+#     ]
+# }
+# results = [agent.invoke(input) for agent in good_agent_list]
+# # [print(result["messages"][-1].content, "\n\n") for result in results]
+# [print(result["messages"][-1].pretty_print(), "\n\n") for result in results]
 
 
 # @router.post("/register")
