@@ -4,87 +4,139 @@ from domain.execution_strategies.orchestration_astream_strategy import (
 from domain.execution_strategies.resome_astream_strategy import (
     ResumeAStreamStrategy,
 )
+from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
+from domain.registry.OrchestratorRegistry import OrchestratorRegistry
 from domain.entyties.UserInput import OrchestrationInput, UserInput
 from application.orchestration_service import OrchestrationService
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
-from fastapi import APIRouter, Depends
+from domain.registry.AgentRegistry import AgentRegistry
+from domain.registry.GraphRegistry import GraphRegistry
+from domain.registry.ToolRegistry import ToolRegistry
+from fastapi import APIRouter, Depends, HTTPException
 from application.resume_service import ResumeService
+from domain.registry.LLMRegistry import LLMRegistry
 from fastapi.responses import StreamingResponse
 from .dependencies import (
     get_orchestration_astream_strategy,
+    get_resume_astream_strategy,
+    get_agent_builder_registry,
+    get_orchestrator_registry,
     get_orchestration_service,
     get_resume_service,
+    get_agent_registry,
+    get_graph_registry,
+    get_tool_registry,
     get_checkpointer,
-    get_resume_astream_strategy,
+    get_llm_registry,
 )
-
 
 router = APIRouter()
 
 
-# @router.get("/get_tools")
-# async def get_tools(
-#     tool_registry: ToolRegistry = Depends(get_tool_registry),
-#     llm_registry: LLMRegistry = Depends(get_llm_registry),
-#     agent_builder_registry: AgentBuilderRegistry = Depends(get_agent_builder_registry),
-#     agent_registry: AgentRegistry = Depends(get_agent_registry),
-# ):
-#     try:
-#         print("-----------Registry Info----------")
-#         tools = await tool_registry.get_all()
-#         [print("tool: ", key, " ", value) for key, value in tools.items()]
-#         llms = await llm_registry.get_all()
-#         [print("llm: ", key, " ", value) for key, value in llms.items()]
-#         agent_builders = await agent_builder_registry.get_all()
-#         [
-#             print(
-#                 "agent_builder: ",
-#                 key,
-#                 " ",
-#                 value,
-#             )
-#             for key, value in agent_builders.items()
-#         ]
-#         agents = await agent_registry.get_all()
-#         [
-#             print(
-#                 "agent_registry: ",
-#                 key,
-#                 " ",
-#                 value,
-#             )
-#             for key, value in agents.items()
-#         ]
-#         print("-----------Registry Info----------")
-#         return True
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=str(e))
+@router.get("/get_all_registry")
+async def get_all_registry(
+    llm_registry: LLMRegistry = Depends(get_llm_registry),
+    tool_registry: ToolRegistry = Depends(get_tool_registry),
+    agent_builder_registry: AgentBuilderRegistry = Depends(get_agent_builder_registry),
+    agent_registry: AgentRegistry = Depends(get_agent_registry),
+    orchestrator_registry: OrchestratorRegistry = Depends(get_orchestrator_registry),
+    graph_registry: GraphRegistry = Depends(get_graph_registry),
+):
+    try:
+        print("-----------Registry Info----------")
+        tools = await tool_registry.get_all()
+        [print("tool: ", key, " ", value) for key, value in tools.items()]
+        llms = await llm_registry.get_all()
+        [print("llm: ", key, " ", value) for key, value in llms.items()]
+        agent_builders = await agent_builder_registry.get_all()
+        [
+            print(
+                "agent_builder: ",
+                key,
+                " ",
+                value,
+            )
+            for key, value in agent_builders.items()
+        ]
+        agents = await agent_registry.get_all()
+        [
+            print(
+                "agent_registry: ",
+                key,
+                " ",
+                value,
+            )
+            for key, value in agents.items()
+        ]
+        orchestrators = await orchestrator_registry.get_all()
+        [
+            print(
+                "orchestrator_registry: ",
+                key,
+                " ",
+                value,
+            )
+            for key, value in orchestrators.items()
+        ]
+        graphs = await graph_registry.get_all()
+        [
+            print(
+                "graph_registry: ",
+                key,
+                " ",
+                value,
+            )
+            for key, value in graphs.items()
+        ]
+
+        print("-----------Registry Info----------")
+        return True
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
-# @router.get("/test_agent")
-# async def test_agent(
-#     question: str,
-#     agent_registry: AgentRegistry = Depends(get_agent_registry),
-# ):
-#     try:
-#         # Assuming agent_factory is defined and has a method to get tools
-#         builders = await agent_registry.get_all()
-#         agents = [await builder.build() for builder in builders.values()]
-#         question = question
-#         input = {
-#             "messages": [
-#                 {
-#                     "role": "user",
-#                     "content": question,
-#                 }
-#             ]
-#         }
-#         results = [await agent.ainvoke(input) for agent in agents]
-#         [print(result["messages"][-1].pretty_print(), "\n\n") for result in results]
+@router.get("/get_tools")
+async def get_tools(
+    tool_registry: ToolRegistry = Depends(get_tool_registry),
+):
+    tools = await tool_registry.get_all()
+    response = {key: value.description for key, value in tools.items()}
+    return response
 
-#         return True
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/get_llms")
+async def get_llms(
+    llm_registry: LLMRegistry = Depends(get_llm_registry),
+):
+    llms = await llm_registry.get_all()
+    return llms
+
+
+@router.get("/get_builders")
+async def get_builders(
+    agent_builder_registry: AgentBuilderRegistry = Depends(get_agent_builder_registry),
+):
+    builders = await agent_builder_registry.get_all()
+    response = [key for key in builders]
+    return response
+
+
+@router.get("/get_agents")
+async def get_agents(
+    agent_registry: AgentRegistry = Depends(get_agent_registry),
+):
+    agents = await agent_registry.get_all()
+    response = [key for key in agents]
+    return response
+
+
+@router.get("/get_orchestrators")
+async def get_orchestrators(
+    orchestrator_registry: OrchestratorRegistry = Depends(get_orchestrator_registry),
+):
+    orchestrators = await orchestrator_registry.get_all()
+    response = [key for key in orchestrators]
+    return response
 
 
 @router.post("/chat/astream")
@@ -110,62 +162,3 @@ async def resume_orchestration(
 ):
     astream = await resume_service.run(strategy, user_input)
     return StreamingResponse(astream, media_type="text/event-stream")
-
-
-# @router.get("/stream")
-# async def stream_orchestration(
-#     query: str,
-# ):
-#     try:
-#         orchestration = ManagementOrchestrator(agent_list=agent_lists, model=llm)
-#         print("2")
-#         graph = orchestration.execute()
-#         input = {
-#             "messages": [
-#                 {
-#                     "role": "user",
-#                     "content": query,
-#                 }
-#             ]
-#         }
-
-#         async def stream_async(graph, inputs):
-#             try:
-#                 async for chunk in graph.astream(inputs, stream_mode="values"):
-#                     yield chunk["messages"][-1].content
-
-#             except Exception as e:
-#                 yield f"data: {e}\n\n"
-
-#         print("3")
-#         return StreamingResponse(
-#             stream_async(graph, input), media_type="text/event-stream"
-#         )
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=str(e))
-
-# agent_list = await agent_factory.create_agents_from_json(json_data)
-# good_agent_list = [await agent.build() for agent in agent_list]
-# question = "user your tool"
-# input = {
-#     "messages": [
-#         {
-#             "role": "user",
-#             "content": question,
-#         }
-#     ]
-# }
-# results = [agent.invoke(input) for agent in good_agent_list]
-# # [print(result["messages"][-1].content, "\n\n") for result in results]
-# [print(result["messages"][-1].pretty_print(), "\n\n") for result in results]
-
-
-# @router.post("/register")
-# async def register_agent(agent: RegisterAgent):
-#     print("router register_agent agent:", agent, "\n")
-#     return True
-
-
-# @router.post("/remove")
-# async def remove_agent(agent_name: str):
-#     return True

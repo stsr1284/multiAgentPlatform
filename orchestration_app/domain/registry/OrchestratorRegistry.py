@@ -1,5 +1,5 @@
 from domain.registry.BaseRegistry import BaseRegistry
-from domain.builder.BaseBuilder import BaseBuilder
+from domain.builder.base_builder import BaseBuilder
 from shared.loggin_config import logger
 from typing import List
 

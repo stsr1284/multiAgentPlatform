@@ -1,19 +1,16 @@
 from api.orchestration_router import router as orchestration_router
-from contextlib import asynccontextmanager
-from application.container import initialize_service
-from shared.loggin_config import logger
-from fastapi import FastAPI
-
-# test
-from psycopg_pool import AsyncConnectionPool
-from utils.config import settings
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
+from api.dependencies import get_initialize_service
+from psycopg_pool import AsyncConnectionPool
+from contextlib import asynccontextmanager
+from shared.loggin_config import logger
+from utils.config import settings
+from fastapi import FastAPI
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting up...")
-    # test
     pool = AsyncConnectionPool(
         conninfo=settings.DB_URI,
         max_size=20,
@@ -25,17 +22,17 @@ async def lifespan(app: FastAPI):
     await checkpointer.setup()
     app.state.db_pool = pool
     app.state.checkpointer = checkpointer
+    initialize_service = get_initialize_service()
     await initialize_service.setup_and_watcher_start()
 
     yield
 
-    logger.info("Shutting down...")
     await initialize_service.stop()
     await pool.close()
+    logger.info("Shutting down...")
 
 
 app = FastAPI(title="Orchestration App", lifespan=lifespan)
-
 
 app.include_router(orchestration_router, prefix="/orchestration")
 

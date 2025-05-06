@@ -3,17 +3,18 @@
       {
         "orchestrator": {
           "type": "SupervisorOrchestrationBuilder",
+          "name": "testsupervisor1",
+          "description": "",
           "llm": "gpt-4o",
           "prompt": "",
-          "name": "testsupervisor1",
           "agent_list": [
             {
               "agent": {
                 "type": "ReactAgentBuilder",
+                "name": "test1",
+                "description": "",
                 "llm": "gpt-4o-mini",
                 "tool": "research_tool",
-                "name": "test1",
-                "description": null,
                 "prompt": "너는 나에게 최대한 싸가지없게 말해야돼",
                 "config": null
               }
@@ -21,10 +22,10 @@
             {
               "agent": {
                 "type": "ReactAgentBuilder",
+                "name": "test2",
+                "description": "",
                 "llm": "gpt-4o-mini",
                 "tool": "research_tool",
-                "name": "test2",
-                "description": null,
                 "prompt": null,
                 "config": null
               }
@@ -32,17 +33,18 @@
             {
               "orchestrator": {
                 "type": "SupervisorOrchestrationBuilder",
+                "name": "testsupervisor2",
+                "description": "",
                 "llm": "gpt-4o-mini",
                 "prompt": "",
-                "name": "testsupervisor2",
                 "agent_list": [
                   {
                     "agent": {
                       "type": "ReactAgentBuilder",
+                      "name": "test3",
+                      "description": "",
                       "llm": "gpt-4o-mini",
                       "tool": "research_tool",
-                      "name": "test3",
-                      "description": null,
                       "prompt": null,
                       "config": null
                     }
@@ -50,10 +52,10 @@
                   {
                     "agent": {
                       "type": "ReactAgentBuilder",
+                      "name": "test4",
+                      "description": "",
                       "llm": "gpt-4o-mini",
                       "tool": "research_tool",
-                      "name": "test4",
-                      "description": null,
                       "prompt": null,
                       "config": null
                     }
@@ -67,10 +69,10 @@
       {
         "agent": {
           "type": "ReactAgentBuilder",
+          "name": "testtest",
+          "description": "",
           "llm": "gpt-4o-mini",
           "tool": ["research_tool", "search_urls"],
-          "name": "testtest",
-          "description": null,
           "prompt": "너는 모든 말에 '냥'을 붙여야돼",
           "config": null
         }
@@ -78,10 +80,10 @@
       {
         "agent": {
           "type": "ReactAgentBuilder",
+          "name": "dongdonghakhak",
+          "description": "",
           "llm": "gpt-4o-mini",
           "tool": "research_tool",
-          "name": "dongdonghakhak",
-          "description": null,
           "prompt": "너는 말괄량이야, 나에게 장난을 쳐야돼",
           "config": null
         }
@@ -89,10 +91,10 @@
       {
         "agent": {
           "type": "ReactAgentBuilder",
+          "name": "research_expert",
+          "description": "",
           "llm": "gpt-4o-mini",
           "tool": "web_search",
-          "name": "research_expert",
-          "description": null,
           "prompt": "You are a world class researcher with access to web search. Do not do any math.",
           "config": null
         }
@@ -100,12 +102,13 @@
       {
         "agent": {
           "type": "ReactAgentBuilder",
+          "name": "math_expert",
+          "description": "",
           "llm": "gpt-4o",
           "tool": ["add", "multiply"],
-          "name": "math_expert",
-          "description": null,
           "prompt": "You are a math expert. Always use one tool at a time.",
-          "config": null
+          "config": null,
+          "aaaaa": "bbbbbb"
         }
       }
     ]

@@ -1,11 +1,13 @@
-from file_watcher_system.handlers.orchestrator_config_handler import (
-    create_orchestrator_config,
+from domain.execution_strategies.orchestration_astream_strategy import (
+    OrchestrationAStreamStrategy,
 )
-from file_watcher_system.handlers.agent_config_handler import create_config_handler
+from domain.execution_strategies.resome_astream_strategy import ResumeAStreamStrategy
+from file_watcher_system.handlers.create_config_handler import create_config_handler
 from file_watcher_system.handlers.plugin_handler import create_plugin_handler
 from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
 from domain.registry.OrchestratorRegistry import OrchestratorRegistry
-from application.OrchestratorBuilder import OrchestratorBuilder
+from domain.builder.orchestrator_builder import OrchestratorBuilder
+from application.orchestration_service import OrchestrationService
 from application.InitializeService import InitializeService
 from application.SetupAgentSystem import SetupAgentSystem
 from domain.registry.AgentRegistry import AgentRegistry
@@ -15,34 +17,28 @@ from domain.registry.ToolRegistry import ToolRegistry
 from application.resume_service import ResumeService
 from domain.registry.LLMRegistry import LLMRegistry
 from application.PluginManager import PluginManager
-from application.AgentFactory import AgentFactory
-
-from domain.execution_strategies.orchestration_astream_strategy import (
-    OrchestrationAStreamStrategy,
-)
-from domain.execution_strategies.resome_astream_strategy import ResumeAStreamStrategy
-from application.orchestration_service import OrchestrationService
+from domain.builder.agent_builder import AgentBuilder
 
 
-tool_registry = ToolRegistry()
 llm_registry = LLMRegistry()
+tool_registry = ToolRegistry()
 agent_builder_registry = AgentBuilderRegistry()
 agent_registry = AgentRegistry()
 graph_registry = GraphRegistry()
 
-agent_factory = AgentFactory(
-    agentBuilderRegistry=agent_builder_registry,
-    llmRegistry=llm_registry,
-    toolRegistry=tool_registry,
-    agentRegistry=agent_registry,
+agent_builder = AgentBuilder(
+    agent_builder_registry=agent_builder_registry,
+    llm_registry=llm_registry,
+    tool_registry=tool_registry,
+    agent_registry=agent_registry,
 )
 
 orchestrator_registry = OrchestratorRegistry()
 orchestrator_builder = OrchestratorBuilder(
-    agentBuilderRegistry=agent_builder_registry,
-    llmRegistry=llm_registry,
-    toolRegistry=tool_registry,
-    orchestratorRegistry=orchestrator_registry,
+    agent_builder_registry=agent_builder_registry,
+    llm_registry=llm_registry,
+    tool_registry=tool_registry,
+    orchestrator_registry=orchestrator_registry,
 )
 
 plugin_manager = PluginManager(
@@ -55,13 +51,15 @@ plugin_manager = PluginManager(
 
 watcher = FileWatcher("plugin")
 watcher.register_handler(create_plugin_handler(plugin_manager))
-watcher.register_handler(create_config_handler(agent_factory))
-watcher.register_handler(create_orchestrator_config(orchestrator_builder))
+watcher.register_handler(create_config_handler(agent_builder, "agent_config.json"))
+watcher.register_handler(
+    create_config_handler(orchestrator_builder, "orchestrator_config.json")
+)
 
 setup_agent_system = SetupAgentSystem(
     base_path="plugin",
     plugin_manager=plugin_manager,
-    agent_factory=agent_factory,
+    agent_builder=agent_builder,
     orchestrator_builder=orchestrator_builder,
 )
 
@@ -85,14 +83,15 @@ resume_service = ResumeService(graph_registry=graph_registry)
 
 
 __all__ = [
-    "tool_registry",
+    "initialize_service",
     "llm_registry",
+    "tool_registry",
     "agent_builder_registry",
     "agent_registry",
-    "agent_factory",
-    "watcher",
-    "initialize_service",
     "orchestrator_registry",
     "graph_registry",
+    "orchestration_astream_strategy",
+    "resume_astream_strategy",
+    "orchestration_service",
     "resume_service",
 ]
