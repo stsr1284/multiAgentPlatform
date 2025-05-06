@@ -3,17 +3,19 @@
       {
         "orchestrator": {
           "type": "SupervisorOrchestrationBuilder",
+          "name": "testsupervisor3",
+          "description": "",
           "llm": "gpt-4o",
-          "prompt": "You are a team supervisor managing a research expert and a math expert.\nFor current events, use research_agent. \nFor math problems, use math_agent.,",
-          "name": "testsupervisor3"
+          "prompt": "You are a team supervisor managing a research expert and a math expert.\nFor current events, use research_agent. \nFor math problems, use math_agent.,"
         }
       },
       {
         "orchestrator": {
             "type": "SupervisorOrchestrationBuilder",
+            "name": "testsupervisor2",
+            "description": "",
             "llm": "gpt-4o-mini",
-            "prompt": "너는 agent supervisor야",
-            "name": "testsupervisor2"
+            "prompt": "너는 agent supervisor야"
         }
       }
     ]
