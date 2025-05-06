@@ -1,6 +1,6 @@
 from api.orchestration_router import router as orchestration_router
 from contextlib import asynccontextmanager
-from container import initialize_service
+from application.container import initialize_service
 from shared.loggin_config import logger
 from fastapi import FastAPI
 
