@@ -1,10 +1,10 @@
-from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
 from domain.builder.base_orchestrator_workflow_builder import (
     BaseOrchestratorWorkflowBuilder,
 )
-from domain.registry.AgentRegistry import AgentRegistry
-from domain.registry.ToolRegistry import ToolRegistry
-from domain.registry.LLMRegistry import LLMRegistry
+from domain.registry.agent_builder_registry import AgentBuilderRegistry
+from domain.registry.agent_registry import AgentRegistry
+from domain.registry.tool_registry import ToolRegistry
+from domain.registry.llm_registry import LLMRegistry
 from .base_builder import BaseBuilder
 from typing import Dict, Any
 import copy

@@ -2,16 +2,16 @@ from domain.execution_strategies.orchestration_astream_strategy import (
     OrchestrationAStreamStrategy,
 )
 from domain.execution_strategies.resome_astream_strategy import ResumeAStreamStrategy
-from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
-from domain.registry.OrchestratorRegistry import OrchestratorRegistry
+from domain.registry.agent_builder_registry import AgentBuilderRegistry
+from domain.registry.orchestrator_registry import OrchestratorRegistry
 from application.orchestration_service import OrchestrationService
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 from application.InitializeService import InitializeService
-from domain.registry.AgentRegistry import AgentRegistry
-from domain.registry.GraphRegistry import GraphRegistry
-from domain.registry.ToolRegistry import ToolRegistry
+from domain.registry.agent_registry import AgentRegistry
+from domain.registry.graph_registry import GraphRegistry
+from domain.registry.tool_registry import ToolRegistry
 from application.resume_service import ResumeService
-from domain.registry.LLMRegistry import LLMRegistry
+from domain.registry.llm_registry import LLMRegistry
 from application import container
 from fastapi import Request
 

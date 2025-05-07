@@ -1,6 +1,6 @@
-from abc import ABC, abstractmethod
-from domain.entyties.UserInput import UserInput
+from domain.entyties.user_input import UserInput
 from langgraph.graph import StateGraph
+from abc import ABC, abstractmethod
 
 
 class ExecutionBaseStrategy(ABC):

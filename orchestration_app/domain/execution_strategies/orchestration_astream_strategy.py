@@ -1,7 +1,7 @@
-from domain.entyties.InterruptThreadGraph import InterruptThreadGraph
+from domain.entyties.interrupt_thread_graph import InterruptThreadGraph
 from .execution_base_strategy import ExecutionBaseStrategy
-from domain.registry.GraphRegistry import GraphRegistry
-from domain.entyties.UserInput import UserInput
+from domain.registry.graph_registry import GraphRegistry
+from domain.entyties.user_input import UserInput
 from langgraph.graph import StateGraph
 import json
 
