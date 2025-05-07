@@ -1,7 +1,7 @@
 from domain.execution_strategies.execution_base_strategy import ExecutionBaseStrategy
-from domain.entyties.InterruptThreadGraph import InterruptThreadGraph
-from domain.registry.GraphRegistry import GraphRegistry
-from domain.entyties.UserInput import UserInput
+from domain.entyties.interrupt_thread_graph import InterruptThreadGraph
+from domain.registry.graph_registry import GraphRegistry
+from domain.entyties.user_input import UserInput
 
 
 class ResumeService:

@@ -1,7 +1,7 @@
-from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
+from domain.registry.agent_builder_registry import AgentBuilderRegistry
 from domain.builder.base_workflow_builder import BaseWorkflowBuilder
-from domain.registry.ToolRegistry import ToolRegistry
-from domain.registry.LLMRegistry import LLMRegistry
+from domain.registry.tool_registry import ToolRegistry
+from domain.registry.llm_registry import LLMRegistry
 from typing import Any, Dict, List, Union
 from shared.loggin_config import logger
 from abc import ABC, abstractmethod

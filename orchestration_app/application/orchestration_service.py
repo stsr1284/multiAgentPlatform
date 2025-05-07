@@ -1,10 +1,9 @@
 from domain.execution_strategies.execution_base_strategy import ExecutionBaseStrategy
-from domain.registry.OrchestratorRegistry import OrchestratorRegistry
+from domain.registry.orchestrator_registry import OrchestratorRegistry
 from langgraph.checkpoint.base import BaseCheckpointSaver
-from domain.registry.AgentRegistry import AgentRegistry
-from domain.registry.GraphRegistry import GraphRegistry
-from domain.entyties.UserInput import OrchestrationInput
-from shared.loggin_config import logger
+from domain.entyties.user_input import OrchestrationInput
+from domain.registry.agent_registry import AgentRegistry
+from domain.registry.graph_registry import GraphRegistry
 from langgraph.graph import StateGraph
 
 
@@ -62,10 +61,8 @@ class OrchestrationService:
                 orchestration_input, checkpointer
             )
             if graph_config is None:
-                logger.error("Graph and config are None.")
-                return None
+                raise ValueError("Graph and config are None.")
             graph, config = graph_config
             return await execution_strategy.execute(graph, config, orchestration_input)
         except Exception as e:
-            logger.error(f"Error in orchestration service: {e}")
-            return None
+            raise ValueError(f"Error in orchestration service: {e}") from e

@@ -1,10 +1,8 @@
-from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
-from domain.registry.OrchestratorRegistry import OrchestratorRegistry
-from domain.registry.ToolRegistry import ToolRegistry
-from domain.registry.LLMRegistry import LLMRegistry
+from domain.registry.agent_builder_registry import AgentBuilderRegistry
+from domain.registry.orchestrator_registry import OrchestratorRegistry
+from domain.registry.tool_registry import ToolRegistry
+from domain.registry.llm_registry import LLMRegistry
 from .base_builder import BaseBuilder
-from typing import Dict, Any
-import copy
 
 
 class OrchestratorBuilder(BaseBuilder):

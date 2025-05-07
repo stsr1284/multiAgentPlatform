@@ -4,17 +4,17 @@ from domain.execution_strategies.orchestration_astream_strategy import (
 from domain.execution_strategies.resome_astream_strategy import (
     ResumeAStreamStrategy,
 )
-from domain.registry.AgentBuilderRegistry import AgentBuilderRegistry
-from domain.registry.OrchestratorRegistry import OrchestratorRegistry
-from domain.entyties.UserInput import OrchestrationInput, UserInput
+from domain.registry.agent_builder_registry import AgentBuilderRegistry
+from domain.registry.orchestrator_registry import OrchestratorRegistry
+from domain.entyties.user_input import OrchestrationInput, UserInput
 from application.orchestration_service import OrchestrationService
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
-from domain.registry.AgentRegistry import AgentRegistry
-from domain.registry.GraphRegistry import GraphRegistry
-from domain.registry.ToolRegistry import ToolRegistry
+from domain.registry.agent_registry import AgentRegistry
+from domain.registry.graph_registry import GraphRegistry
+from domain.registry.tool_registry import ToolRegistry
 from fastapi import APIRouter, Depends, HTTPException
 from application.resume_service import ResumeService
-from domain.registry.LLMRegistry import LLMRegistry
+from domain.registry.llm_registry import LLMRegistry
 from fastapi.responses import StreamingResponse
 from .dependencies import (
     get_orchestration_astream_strategy,
@@ -33,7 +33,7 @@ from .dependencies import (
 router = APIRouter()
 
 
-@router.get("/get_all_registry")
+@router.get("/get_all_registry")  # test용
 async def get_all_registry(
     llm_registry: LLMRegistry = Depends(get_llm_registry),
     tool_registry: ToolRegistry = Depends(get_tool_registry),
@@ -148,9 +148,12 @@ async def run_orchestration(
         get_orchestration_astream_strategy
     ),
 ):
-    astream = await orchestration_service.run(
-        strategy, orchestration_input, checkpointer
-    )
+    try:
+        astream = await orchestration_service.run(
+            strategy, orchestration_input, checkpointer
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
     return StreamingResponse(astream, media_type="text/event-stream")
 
 
