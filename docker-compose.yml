@@ -35,6 +35,6 @@ services:
     entrypoint: >
       sh -c "sleep 5 && certbot certonly --webroot
       --webroot-path=/var/www/certbot
-      --email 1599zzang@gmail.com --agree-tos --no-eff-email
-      -d donghakl.shop -d www.donghakl.shop"
+      --email {이메일} --agree-tos --no-eff-email
+      -d {도메인} -d {도메인}"
 
