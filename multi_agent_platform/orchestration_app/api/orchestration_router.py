@@ -126,7 +126,10 @@ async def get_agents(
     agent_registry: AgentRegistry = Depends(get_agent_registry),
 ):
     agents = await agent_registry.get_all()
-    response = [key for key in agents]
+    response = [
+        {"title": key, "description": value.description}
+        for key, value in agents.items()
+    ]
     return response
 
 
@@ -135,7 +138,10 @@ async def get_orchestrators(
     orchestrator_registry: OrchestratorRegistry = Depends(get_orchestrator_registry),
 ):
     orchestrators = await orchestrator_registry.get_all()
-    response = [key for key in orchestrators]
+    response = [
+        {"title": key, "description": value.description}
+        for key, value in orchestrators.items()
+    ]
     return response
 
 

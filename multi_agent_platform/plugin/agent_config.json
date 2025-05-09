@@ -4,7 +4,7 @@
         "orchestrator": {
           "type": "SupervisorOrchestrationBuilder",
           "name": "testsupervisor1",
-          "description": "",
+          "description": "안뇽",
           "llm": "gpt-4o",
           "prompt": "",
           "agent_list": [
@@ -25,7 +25,7 @@
                 "name": "test2",
                 "description": "",
                 "llm": "gpt-4o-mini",
-                "tool": "research_tool",
+                "tool": ["research_tool", "search_urls"],
                 "prompt": null,
                 "config": null
               }
@@ -92,7 +92,18 @@
         "agent": {
           "type": "ReactAgentBuilder",
           "name": "research_expert",
-          "description": "",
+          "description": "자료 검색 에이전트",
+          "llm": "gpt-4o-mini",
+          "tool": "web_search",
+          "prompt": "You are a world class researcher with access to web search. Do not do any math.",
+          "config": null
+        }
+      },
+      {
+        "agent": {
+          "type": "ReactAgentBuilder",
+          "name": "research_agent",
+          "description": "자료 검색 에이전트",
           "llm": "gpt-4o-mini",
           "tool": "web_search",
           "prompt": "You are a world class researcher with access to web search. Do not do any math.",
@@ -103,7 +114,7 @@
         "agent": {
           "type": "ReactAgentBuilder",
           "name": "math_expert",
-          "description": "",
+          "description": "수학 에이전트",
           "llm": "gpt-4o",
           "tool": ["add", "multiply"],
           "prompt": "You are a math expert. Always use one tool at a time.",

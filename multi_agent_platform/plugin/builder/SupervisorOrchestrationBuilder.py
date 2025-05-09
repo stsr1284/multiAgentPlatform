@@ -27,6 +27,7 @@ class SupervisorOrchestrationBuilder(BaseOrchestratorWorkflowBuilder):
             description = kwargs.get("description")
             if description is None:
                 raise ValueError("description이 필요합니다")
+            self.description = description
 
             llms = kwargs.get("llm")
             if llms is None:
@@ -76,6 +77,7 @@ class SupervisorOrchestrationBuilder(BaseOrchestratorWorkflowBuilder):
                 model=self.llm,
                 prompt=system_prompt,
                 agents=agent_list,
+                supervisor_name=self.name,
                 output_mode="full_history",
             )
             compiled_graph = self.graph.compile(
