@@ -1,3 +1,5 @@
+version: "3"
+
 services:
   fastapi:
     container_name: fastapi-deploy
@@ -15,8 +17,24 @@ services:
     container_name: nginx-deploy
     ports:
       - 80:80
+      - 443:443
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
     depends_on:
       - fastapi
     restart: always
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot-deploy
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: >
+      sh -c "sleep 5 && certbot certonly --webroot
+      --webroot-path=/var/www/certbot
+      --email 1599zzang@gmail.com --agree-tos --no-eff-email
+      -d donghakl.shop -d www.donghakl.shop"
+
