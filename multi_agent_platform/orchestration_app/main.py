@@ -1,6 +1,7 @@
 from api.orchestration_router import router as orchestration_router
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 from api.dependencies import get_initialize_service
+from fastapi.middleware.cors import CORSMiddleware
 from psycopg_pool import AsyncConnectionPool
 from contextlib import asynccontextmanager
 from shared.loggin_config import logger
@@ -33,5 +34,13 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Orchestration App", lifespan=lifespan)
+
+app.add_middleware(  # CORS 설정, 임시방편임
+    CORSMiddleware,
+    allow_origins=["*"],  # 또는 ['http://localhost:3000', 'https://your-domain.com']
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(orchestration_router, prefix="/orchestration")
