@@ -1,4 +1,4 @@
-from application.plugin_manager import PluginManager
+from domain.system_setup.plugin_manager import PluginManager
 from watchfiles import Change
 from pathlib import Path
 

@@ -4,7 +4,7 @@ from langgraph.checkpoint.base import BaseCheckpointSaver
 from domain.entyties.user_input import OrchestrationInput
 from domain.registry.agent_registry import AgentRegistry
 from domain.registry.graph_registry import GraphRegistry
-from langgraph.graph import StateGraph
+from langgraph.graph.graph import CompiledGraph
 
 
 class OrchestrationService:
@@ -20,7 +20,7 @@ class OrchestrationService:
 
     async def build_graph_and_config(
         self, orchestration_input: OrchestrationInput, checkpointer: BaseCheckpointSaver
-    ) -> tuple[StateGraph, dict] | None:
+    ) -> tuple[CompiledGraph, dict] | None:
         builders = []
         for name in orchestration_input.agent_list:
             builder = await self.agent_registry.get(name)

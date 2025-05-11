@@ -1,4 +1,4 @@
-from langgraph.graph import StateGraph
+from langgraph.graph.graph import CompiledGraph
 from abc import ABC, abstractmethod
 
 
@@ -12,5 +12,5 @@ class BaseWorkflowBuilder(ABC):
         pass
 
     @abstractmethod
-    async def build() -> StateGraph:
+    async def build() -> CompiledGraph:
         pass

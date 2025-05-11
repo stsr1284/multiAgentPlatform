@@ -4,17 +4,19 @@ from domain.builder.base_orchestrator_workflow_builder import (
 from domain.builder.base_workflow_builder import BaseWorkflowBuilder
 from langchain_core.language_models.chat_models import BaseChatModel
 from langgraph_supervisor import create_supervisor
-from langgraph.graph import StateGraph
-from typing import Optional, Any
+from langgraph.graph.graph import CompiledGraph
+from typing import Optional, Any, Callable
+from langchain_core.tools import BaseTool
 
 
-class SupervisorOrchestrationBuilder(BaseOrchestratorWorkflowBuilder):
+class SupervisorOrchestratorBuilder(BaseOrchestratorWorkflowBuilder):
     def __init__(self):
         super().__init__()
         self.name: Optional[str] = None
         self.llm: Optional[BaseChatModel] = None
         self.prompt: Optional[str] = None
         self.description: Optional[str] = None
+        self.tools: Optional[list[BaseTool | Callable]] = None
         self.agent_builder_list: Optional[list[BaseWorkflowBuilder]] = []
 
     async def __call__(self, **kwargs):
@@ -49,28 +51,26 @@ class SupervisorOrchestrationBuilder(BaseOrchestratorWorkflowBuilder):
     async def reset_agent(self) -> None:
         self.agent_builder_list = []
 
-    async def build(self, checkpointer: Optional[Any] = None) -> StateGraph:
+    async def build(self, checkpointer: Optional[Any] = None) -> CompiledGraph:
         try:
-            print("name:", self.name)  # test
-            print("prompt:", self.prompt)  # test
             system_prompt = self.prompt
             if self.prompt is None:
                 members = []
-                members = [agent.name for agent in self.agent_builder_list]
+                members = [
+                    f"{agent.name}: {agent.description}"
+                    for agent in self.agent_builder_list
+                ]
                 options = ["FINISH"] + members
                 default_prompt = (
-                    "You are a supervisor tasked with managing a conversation between the"
-                    f" following workers: {options}. Given the following user request,"
-                    " respond with the worker to act next. Each worker will perform a"
-                    " task and respond with their results and status. When finished,"
+                    "You are a supervisor overseeing a task handled by the following workers: {options}. "
+                    "Given the user's request, coordinate the workers so that each performs their task "
+                    "and contributes to the overall result. Once all relevant tasks are completed, "
+                    "summarize the final result clearly and concisely. "
+                    "Your job is to manage the workflow and provide the final answer to the user. to korean"
                 )
-
                 system_prompt = default_prompt.format(options=options)
-
             agent_list = []
             for agent in self.agent_builder_list:
-                print("agent name:", agent.name)  # test
-                print("agent:", agent, "\n")  # test
                 agent_list.append(await agent.build())
 
             self.graph = create_supervisor(
@@ -90,6 +90,6 @@ class SupervisorOrchestrationBuilder(BaseOrchestratorWorkflowBuilder):
 
 async def register(registry):
     try:
-        await registry.register(SupervisorOrchestrationBuilder)
+        await registry.register(SupervisorOrchestratorBuilder)
     except Exception as e:
         raise

@@ -1,8 +1,10 @@
 from langchain_core.language_models.chat_models import BaseChatModel
 from domain.builder.base_workflow_builder import BaseWorkflowBuilder
+from langchain.tools.render import render_text_description
 from langgraph.prebuilt import create_react_agent
-from typing import Optional, Callable, Any
+from langchain.prompts import PromptTemplate
 from langchain_core.tools import BaseTool
+from typing import Optional, Callable
 
 
 class ReactAgentBuilder(BaseWorkflowBuilder):
@@ -10,7 +12,7 @@ class ReactAgentBuilder(BaseWorkflowBuilder):
         super().__init__()
         self.name: Optional[str] = None
         self.llm: Optional[BaseChatModel] = None
-        self.tools: Optional[list[BaseTool | Callable]] = None
+        self.tools: Optional[list[BaseTool | Callable]] = []
         self.prompt: Optional[str] = None
         self.description: Optional[str] = None
 
@@ -43,11 +45,41 @@ class ReactAgentBuilder(BaseWorkflowBuilder):
 
     async def build(self):
         try:
+
+            system_prompt = self.prompt
+            if system_prompt is None:
+                template = """
+                    Answer the following questions as best you can. You have access to the following tools:
+
+                    {tools}
+
+                    Use the following format:
+
+                    Question: the input question you must answer
+                    Thought: you should always think about what to do
+                    Action: the action to take, should be one of [{tool_names}]
+                    Action Input: the input to the action
+                    Observation: the result of the action
+                    ... (this Thought/Action/Action Input/Observation can repeat N times)
+                    Thought: I now know the final answer
+                    Final Answer: the final answer to the original input question
+
+                    Begin!
+
+                    Question: (user Input)
+                    Thought:
+                """
+                prompt = PromptTemplate.from_template(template)
+                system_prompt = prompt.partial(
+                    tools=render_text_description(self.tools),
+                    tool_names=", ".format(t.name for t in self.tools),
+                )
+
             graph = create_react_agent(
                 model=self.llm,
                 tools=self.tools,
                 name=self.name,
-                prompt=self.prompt,
+                prompt=system_prompt,
             )
         except Exception as e:
             raise e

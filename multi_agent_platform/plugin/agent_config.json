@@ -2,65 +2,43 @@
     "agent_list": [
       {
         "orchestrator": {
-          "type": "SupervisorOrchestrationBuilder",
-          "name": "testsupervisor1",
-          "description": "안뇽",
+          "type": "SupervisorOrchestratorBuilder",
+          "name": "Translation_Agent",
+          "description": "사용자의 요청 언어로 번역을 수행하는 에이전트",
           "llm": "gpt-4o",
           "prompt": "",
           "agent_list": [
             {
               "agent": {
                 "type": "ReactAgentBuilder",
-                "name": "test1",
-                "description": "",
+                "name": "English_translation_agent",
+                "description": "요청에 맞게 영어로 번역을 수행하는 에이전트",
                 "llm": "gpt-4o-mini",
-                "tool": "research_tool",
-                "prompt": "너는 나에게 최대한 싸가지없게 말해야돼",
+                "tool": "",
+                "prompt": "You are a professional English translator. Translate the following text into natural and polite English suitable for formal communication. Preserve the meaning and tone of the original text.",
                 "config": null
               }
             },
             {
               "agent": {
                 "type": "ReactAgentBuilder",
-                "name": "test2",
-                "description": "",
+                "name": "Arabic_translation_agent",
+                "description": "요청에 맞게 아랍어로 번역을 수행하는 에이전트",
                 "llm": "gpt-4o-mini",
-                "tool": ["research_tool", "search_urls"],
-                "prompt": null,
+                "tool": "",
+                "prompt": "You are a professional Arabic translator. Translate the following text into natural spoken Egyptian Arabic as used in everyday conversations. Keep the tone casual and culturally appropriate, reflecting the original meaning.",
                 "config": null
               }
             },
             {
-              "orchestrator": {
-                "type": "SupervisorOrchestrationBuilder",
-                "name": "testsupervisor2",
-                "description": "",
+              "agent": {
+                "type": "ReactAgentBuilder",
+                "name": "Japanese_translation_agent",
+                "description": "요청에 맞게 일본어로 번역을 수행하는 에이전트",
                 "llm": "gpt-4o-mini",
-                "prompt": "",
-                "agent_list": [
-                  {
-                    "agent": {
-                      "type": "ReactAgentBuilder",
-                      "name": "test3",
-                      "description": "",
-                      "llm": "gpt-4o-mini",
-                      "tool": "research_tool",
-                      "prompt": null,
-                      "config": null
-                    }
-                  },
-                  {
-                    "agent": {
-                      "type": "ReactAgentBuilder",
-                      "name": "test4",
-                      "description": "",
-                      "llm": "gpt-4o-mini",
-                      "tool": "research_tool",
-                      "prompt": null,
-                      "config": null
-                    }
-                  }
-                ]
+                "tool": "",
+                "prompt": "You are a professional Japanese translator. Translate the following text into natural and polite Japanese suitable for formal communication. Preserve the meaning and tone of the original text.",
+                "config": null
               }
             }
           ]
@@ -69,33 +47,33 @@
       {
         "agent": {
           "type": "ReactAgentBuilder",
-          "name": "testtest",
-          "description": "",
+          "name": "report_writer",
+          "description": "보고서 작성 에이전트 최종적으로 보고서를 작성하는 에이전트",
           "llm": "gpt-4o-mini",
-          "tool": ["research_tool", "search_urls"],
-          "prompt": "너는 모든 말에 '냥'을 붙여야돼",
+          "tool": "",
+          "prompt": "You are an expert report writer. Given the following input, follow a step-by-step process to analyze it and generate a structured report.\n1. First, identify the key topics or issues in the input.\n2. Then, analyze each topic by considering its implications, causes, or importance.\n3. Organize your findings into a well-structured report with the following sections:\n- Introduction\n- Key Findings\n- Analysis and Discussion\n- Conclusion and Recommendations (if any)\n4. Ensure clarity, coherence, and formality in writing.\nInput:\nto korean",
           "config": null
         }
       },
       {
         "agent": {
           "type": "ReactAgentBuilder",
-          "name": "dongdonghakhak",
-          "description": "",
-          "llm": "gpt-4o-mini",
-          "tool": "research_tool",
-          "prompt": "너는 말괄량이야, 나에게 장난을 쳐야돼",
+          "name": "logical_thinking_agent",
+          "description": "문제 해결을 위한 논리적 사고를 하는 에이전트",
+          "llm": "gpt-4o",
+          "tool": "",
+          "prompt": "You are a logical problem-solving agent. Your task is to break down the given problem into smaller parts, analyze them step-by-step using structured reasoning, and derive a clear, well-supported solution. Think aloud as you work through the problem. Make no assumptions without stating them. Use bullet points or numbered steps to organize your reasoning clearly. Your final output should include a brief summary of the solution with justification based on your reasoning steps. to korean",
           "config": null
         }
       },
       {
         "agent": {
           "type": "ReactAgentBuilder",
-          "name": "research_expert",
-          "description": "자료 검색 에이전트",
+          "name": "company_search_agent",
+          "description": "인포뱅크 비즈니스 리포트 검색 에이전트",
           "llm": "gpt-4o-mini",
-          "tool": "web_search",
-          "prompt": "You are a world class researcher with access to web search. Do not do any math.",
+          "tool": "infobank_business_report_search",
+          "prompt": "you are infobank business report search agent. You can only use infobank business report search tool. Do not do any math. to korean",
           "config": null
         }
       },
@@ -105,8 +83,8 @@
           "name": "research_agent",
           "description": "자료 검색 에이전트",
           "llm": "gpt-4o-mini",
-          "tool": "web_search",
-          "prompt": "You are a world class researcher with access to web search. Do not do any math.",
+          "tool": "tavily_search",
+          "prompt": "You are a world class researcher with access to web search. Do not do any math. to korean",
           "config": null
         }
       },
@@ -114,10 +92,10 @@
         "agent": {
           "type": "ReactAgentBuilder",
           "name": "math_expert",
-          "description": "수학 에이전트",
+          "description": "수학 문제 풀이 에이전트",
           "llm": "gpt-4o",
           "tool": ["add", "multiply"],
-          "prompt": "You are a math expert. Always use one tool at a time.",
+          "prompt": "",
           "config": null,
           "aaaaa": "bbbbbb"
         }

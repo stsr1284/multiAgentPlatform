@@ -2,20 +2,29 @@
     "orchestrator_list": [
       {
         "orchestrator": {
-          "type": "SupervisorOrchestrationBuilder",
-          "name": "testsupervisor3",
+          "type": "SupervisorOrchestratorBuilder",
+          "name": "supervisor",
           "description": "에이전트 조율 오케스트레이터",
-          "llm": "gpt-4o",
-          "prompt": "You are a team supervisor managing a research expert and a math expert.\nFor current events, use research_agent. \nFor math problems, use math_agent.,"
+          "llm": "gpt-4o-mini",
+          "prompt": ""
         }
       },
+            {
+        "orchestrator": {
+          "type": "PlannerOrchestratorBuilder",
+          "name": "planner",
+          "description": "에이전트 실행 계획 오케스트레이터",
+          "llm": ["gpt-4o-mini", "gpt-4o-mini"],
+          "prompt": ""
+        }
+      },
+      
+
       {
         "orchestrator": {
-            "type": "SupervisorOrchestrationBuilder",
-            "name": "testsupervisor2",
-            "description": "에이전트 협업 오케스트레이터",
-            "llm": "gpt-4o-mini",
-            "prompt": "너는 agent supervisor야"
+            "type": "CollaborationOrchestratorBuilder",
+            "name": "collaboration",
+            "description": "에이전트 협업 오케스트레이터"
         }
       }
     ]

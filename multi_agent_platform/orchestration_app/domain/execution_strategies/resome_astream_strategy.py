@@ -1,7 +1,7 @@
 from domain.execution_strategies.execution_base_strategy import ExecutionBaseStrategy
 from domain.entyties.user_input import UserInput
 from shared.loggin_config import logger
-from langgraph.graph import StateGraph
+from langgraph.graph.graph import CompiledGraph
 from langgraph.types import Command
 from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 import json
@@ -11,7 +11,7 @@ class ResumeAStreamStrategy(ExecutionBaseStrategy):
     def __init__(self, graph_registry):
         self.graph_registry = graph_registry
 
-    async def execute(self, graph: StateGraph, config: dict, user_input: UserInput):
+    async def execute(self, graph: CompiledGraph, config: dict, user_input: UserInput):
         async def event_stream():
             try:
                 async for event in graph.astream(
@@ -20,25 +20,12 @@ class ResumeAStreamStrategy(ExecutionBaseStrategy):
                     stream_mode="values",
                     subgraphs=True,
                 ):
-                    print("------------------------------------")
-                    print(type(event))
-                    print("1")
                     agent: str = None
                     agent_type = event[0]
-                    if len(
-                        agent_type
-                    ):  # 없는 경우 1. 마지막 대답일 때, 2. toolMessage일때
-                        agent = agent_type[0].split(":")[0]
-                        print("dsfsdfsdf", agent_type[0])
-                    print("agent: ", agent_type)
-                    print("agent: ", type(agent_type))
-                    print("2")
-                    print("event:", event, "\n")
+                    if len(agent_type):
+                        agent = agent_type[-1].split(":")[0]
                     if "messages" in event[1]:
-                        # 현재 분류 다 했으니깐 프론트는 agent 받은거에 빛내고, meesage 받은거나 tool_call이면 표시하기
                         if isinstance(event[1]["messages"][-1], HumanMessage):
-                            print("Humman Message!!")
-                            print("message:", event[1]["messages"][-1])
                             if agent is None:
                                 continue
                             else:
@@ -51,10 +38,7 @@ class ResumeAStreamStrategy(ExecutionBaseStrategy):
                                     }
                                 ) + "\n"
 
-                        # AIMEssage인데 event[0]이 없으면 최동 대답
                         elif isinstance(event[1]["messages"][-1], AIMessage):
-                            print("AI Message!!")
-                            print("message:", event[1]["messages"][-1])
                             if agent is None:
                                 yield json.dumps(
                                     {
@@ -65,9 +49,6 @@ class ResumeAStreamStrategy(ExecutionBaseStrategy):
                                     }
                                 ) + "\n"
                             if event[1]["messages"][-1].tool_calls:
-                                print(
-                                    "tool_calls:", event[1]["messages"][-1].tool_calls
-                                )
                                 yield json.dumps(
                                     {
                                         "type": "tool_calls",
@@ -79,7 +60,6 @@ class ResumeAStreamStrategy(ExecutionBaseStrategy):
                                     }
                                 ) + "\n"
                             elif not event[1]["messages"][-1].tool_calls:
-                                print("tools_calls 없음!")
                                 yield json.dumps(
                                     {
                                         "type": "message",
@@ -89,8 +69,6 @@ class ResumeAStreamStrategy(ExecutionBaseStrategy):
                                     }
                                 ) + "\n"
                         elif isinstance(event[1]["messages"][-1], ToolMessage):
-                            print("Tool Message!!")
-                            print("message:", event[1]["messages"][-1])
                             yield json.dumps(
                                 {
                                     "type": "tool",
@@ -100,14 +78,7 @@ class ResumeAStreamStrategy(ExecutionBaseStrategy):
                                 }
                             ) + "\n"
                     else:
-                        print("인터럽드 발생!!!")
-                        print("message:", event[1]["__interrupt__"][0].value)
                         if event[1]["__interrupt__"][0].resumable and agent is not None:
-                            # await self.graph_registry.register(
-                            #     InterruptThreadGraph(
-                            #         thread_id=user_input.thread_id, graph=graph
-                            #     )
-                            # )
                             yield json.dumps(
                                 {
                                     "type": "interrupt",
@@ -116,27 +87,14 @@ class ResumeAStreamStrategy(ExecutionBaseStrategy):
                                     "message": event[1]["__interrupt__"][0].value,
                                 }
                             ) + "\n"
-                    print("------------------------------------")
             except Exception as e:
-                logger.error(f"Error in event stream: {e}")
+                yield json.dumps(
+                    {
+                        "type": "error",
+                        "agent": None,
+                        "tool_name": None,
+                        "message": str(e),
+                    }
+                ) + "\n"
 
         return event_stream()
-
-        # for key, value in event.items():
-        #     if key == "__interrupt__":
-        #         if value[0].resumable:
-        #             yield json.dumps(
-        #                 {
-        #                     "type": "interrupt",
-        #                     "message": value[0].value,
-        #                 }
-        #             ) + "\n"
-        #         else:
-        #             raise ValueError("Thread is not resumable")
-        #     else:
-        #         yield json.dumps(
-        #             {
-        #                 "type": "message",
-        #                 "message": value["messages"][-1].content,
-        #             }
-        #         ) + "\n"
