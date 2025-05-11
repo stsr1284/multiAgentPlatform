@@ -2,22 +2,22 @@ from domain.execution_strategies.orchestration_astream_strategy import (
     OrchestrationAStreamStrategy,
 )
 from domain.execution_strategies.resome_astream_strategy import ResumeAStreamStrategy
-from file_watcher_system.handlers.create_config_handler import create_config_handler
-from file_watcher_system.handlers.plugin_handler import create_plugin_handler
+from domain.system_setup.handlers.create_config_handler import create_config_handler
+from domain.system_setup.handlers.plugin_handler import create_plugin_handler
 from domain.registry.agent_builder_registry import AgentBuilderRegistry
 from domain.registry.orchestrator_registry import OrchestratorRegistry
+from domain.system_setup.setup_agent_system import SetupAgentSystem
 from domain.builder.orchestrator_builder import OrchestratorBuilder
 from application.orchestration_service import OrchestrationService
+from domain.system_setup.plugin_manager import PluginManager
 from application.InitializeService import InitializeService
-from application.setup_agent_system import SetupAgentSystem
-from domain.registry.agent_registry import AgentRegistry
-from file_watcher_system.file_watcher import FileWatcher
 from domain.registry.graph_registry import GraphRegistry
+from domain.registry.agent_registry import AgentRegistry
+from domain.system_setup.file_watcher import FileWatcher
 from domain.registry.tool_registry import ToolRegistry
 from domain.builder.agent_builder import AgentBuilder
 from application.resume_service import ResumeService
 from domain.registry.llm_registry import LLMRegistry
-from application.plugin_manager import PluginManager
 
 
 llm_registry = LLMRegistry()

@@ -13,6 +13,9 @@ class Settings(BaseSettings):
     LANGSMITH_ENDPOINT: str
     LANGSMITH_API_KEY: str
     LANGSMITH_PROJECT: str
+    ANTHROPIC_API_KEY: str
+    GOOGLE_API_KEY: str
+    TAVILY_API_KEY: str
     DB_URI: str
     CONNECTION_KWARGS: dict
 
